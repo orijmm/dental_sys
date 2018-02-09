@@ -18,6 +18,18 @@ $(document).ready(function() {
     }); 
 });
 
+$(document).ready(function() {
+    $('#table-1').DataTable({
+       "columnDefs": [
+            {"width": "20%", "targets":1}
+          ]
+    }); 
+});
+
+$(document).ready(function() {
+    $('#table-2').DataTable(); 
+});
+
 // plugin
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();

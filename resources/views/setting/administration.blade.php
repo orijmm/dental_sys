@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="col-md-12 col-sm-12 col-xs-12 bootstrap-grid margin-bottom">
-    <div class="powerwidget cold-grey">
-        <header>
+    <div class="container-fluid">
+        <header class="text-center">
             <h2>{{ trans('app.setting') }}
             <small>{{trans('app.manage_general_system_settings')}}</small></h2>
         </header>

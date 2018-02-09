@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-md-12 col-sm-12 col-xs-12 bootstrap-grid margin-bottom">
-  <div class="powerwidget cold-grey">
+  <div class="powerwidget blue">
       <header>
           <h2>{{ trans('app.user') }}
           <small>{{ $user->full_name() }}</small></h2>

@@ -96,3 +96,15 @@
     */
     Route::get('activity/user/{id}', 'ActivityController@log_user')->name('activity.user');
     Route::resource('activity', 'ActivityController');
+
+    /**
+    * Dental sistem
+    */
+    Route::resource('appointment', 'AppointmentController');
+    Route::resource('history', 'HistoryController');
+    Route::resource('numconsult', 'NumConsultController');
+    Route::resource('odontogram', 'OdontogramController');
+    Route::resource('patient', 'PatientController');
+    Route::resource('specialist', 'SpecialistController');
+    Route::resource('specialty', 'SpecialtyController');
+    Route::resource('teeth', 'TeethController');

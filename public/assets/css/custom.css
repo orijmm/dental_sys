@@ -97,7 +97,7 @@ body {
   color: #555;
   height: 100%;
   width: 100%!important;
-  background-color: #33383d;
+  background-color: #5bc0de;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -2092,13 +2092,13 @@ a.list-group-item-warning:focus {
   border-top: 1px solid #e2eae9;
 }
 .table > thead > tr > th {
-  background: #858689;
+  background: #5bc0de;
   color: #fff;
   font-size: .87em;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 700;
-  border: 1px solid #8b8c8d;
+  border: 1px solid #5bc0de;
   padding: 7px 10px;
   border-bottom: 7px solid #ddd
 }
@@ -2206,7 +2206,7 @@ a.list-group-item-warning:focus {
   left: 0;
   bottom: 0;
   right: 0;
-  top: 62px;
+  top: 216px;
 }
 /* Main Menu */
 
@@ -2695,7 +2695,7 @@ object {
 .responsive-admin-menu #menu ul {
   display: none;
   width: 100%;
-  background-color: #5c6064;
+  background-color: #0282BF;
   overflow: hidden;
 }
 .responsive-admin-menu #menu .active:hover {
@@ -2848,7 +2848,7 @@ object {
   cursor: auto;
 }
 .main-header {
-  background: #fff;
+  background: -webkit-gradient(linear, 100% 0%, 87% 0%, from(#0077AE), to(#FFFFFF));
   position: absolute;
   width: 100%;
   right: 0px;
@@ -2864,7 +2864,7 @@ object {
   float: left
 }
 .main-header .navbar-content {
-  padding: 10px 7px 5px 0;
+  padding: 0px 7px 5px 0;
 }
 .main-header .btn-default {
   background: #fff;
@@ -2887,7 +2887,7 @@ object {
   margin-right: 3px;
 }
 .main-header .btn-user {
-  color: #33383d;
+  color: #31435e;
   width: 42px;
   overflow: hidden;
   line-height: 13px;
@@ -2898,7 +2898,7 @@ object {
   border-radius: 0;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  background-color: #33383d;
+  background-color: #31435e;
   margin-right: 3px;
   transition: all 0.2s ease-in;
 }
@@ -8294,7 +8294,12 @@ opacity: 1;
 }
  @media screen and (max-width: 480px) {
    
-
+#logo-menu-lateral {
+  display: none
+}
+#navbar_textoylogo {
+  display: none
+}
 .main-header .navbar-brand {
   display: none
 }
