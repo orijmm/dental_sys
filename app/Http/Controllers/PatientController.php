@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Patient;
 
 class PatientController extends Controller
 {
@@ -11,8 +12,22 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $patient = Patient::paginate(10);
+        if ( $request->ajax() ) {
+            if (count($patient)) {
+                return response()->json([
+                    'success' => true,
+                    'view'    => view('patient.list', compact('patient'))->render(),
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => trans('app.no_records_found')
+                ]);
+            }
+        }
         return view('patient.index');
     }
 
@@ -35,7 +50,13 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $patient = Patient::create($request->all());
+        if ( $patient ) {
+                return redirect()->route('patient.index', compact('patient'))->withSuccess('Paciente creado con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -46,6 +67,7 @@ class PatientController extends Controller
      */
     public function show($id)
     {
+        $patient = Patient::find($id);
         return view('patient.show');
     }
 
@@ -58,6 +80,7 @@ class PatientController extends Controller
     public function edit($id)
     {
         $edit = true;
+        $patient = Patient::find($id);
         return view('patient.create', compact('edit'));
     }
 
@@ -70,7 +93,13 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $patient = Patient::find($id)->update($request->all());
+        if ( $patient ) {
+                return redirect()->route('patient.index', compact('patient'))->withSuccess('Paciente actualizado con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -81,6 +110,18 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deletepatient = Patient::find($id);
+        if ( $deletepatient->delete() ) {
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Paciente eliminado',
+            ]);
+        } else {
+            return response()->json([
+                'success'=> false,
+                'message' => trans('app.error_again')
+            ]);
+        }
     }
 }

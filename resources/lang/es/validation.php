@@ -151,6 +151,7 @@ return [
         'reference'             => 'Referencia',
         'amount'                => 'Cantidad',
         'role'                  => 'Rol',
+        'name_consult'          => 'Numero de consultorio',
     ],
 
 ];

@@ -102,7 +102,7 @@
     */
     Route::resource('appointment', 'AppointmentController');
     Route::resource('history', 'HistoryController');
-    Route::resource('numconsult', 'NumConsultController');
+    Route::resource('numconsult', 'NumConsultController', ['except' => ['edit', 'update','show']]);
     Route::resource('odontogram', 'OdontogramController');
     Route::resource('patient', 'PatientController');
     Route::resource('specialist', 'SpecialistController');

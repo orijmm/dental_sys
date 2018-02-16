@@ -112,6 +112,7 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+    'name_consult' => 'Numero de consultorio'],
 
 ];

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Appointment;
+use App\Patient;
+use App\Specialist;
+use App\Numconsult;
 
 class AppointmentController extends Controller
 {
@@ -27,7 +30,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        return view('appointment.index');
+        $appointments = Appointment::paginate(10);
+        return view('appointment.index',compact('appointments'));
     }
 
     /**
@@ -39,7 +43,10 @@ class AppointmentController extends Controller
     {
         $edit = false;
         $appointment = $this->appointment;
-        return view('appointment.create', compact('edit', 'appointment'));
+        $patients = Patient::all()->pluck('full_name2', 'id');
+        $specialists = Specialist::all()->pluck( 'full_name','id');
+        $numconsult = Numconsult::pluck('name_consult', 'id');
+        return view('appointment.create', compact('edit', 'appointment', 'patients', 'specialists', 'numconsult'));
     }
 
     /**
@@ -50,7 +57,13 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        return view('appointment.show');
+        $appointment = Appointment::create($request->all());
+        if ( $appointment ) {
+                return redirect()->route('appointment.index', compact('appointment'))->withSuccess('Cita creada con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -61,7 +74,8 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
-        return view('appointment.show');
+        $appointment = Appointment::find($id);
+        return view('appointment.show', compact('appointment'));
     }
 
     /**
@@ -73,7 +87,7 @@ class AppointmentController extends Controller
     public function edit($id)
     {
         $edit = true;
-        $appointment = $this->appointment;
+        $appointment = Appointment::find($id);
         return view('appointment.create', compact('edit', 'appointments'));
     }
 
@@ -86,7 +100,13 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $appointment = Appointment::find($id)->update($request->all());
+        if ( $appointment ) {
+                return redirect()->route('appointment.index', compact('appointment'))->withSuccess('Cita actualizada con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -97,6 +117,18 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteappointment = Appointment::find($id);
+        if ( $deleteappointment->delete() ) {
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Cita eliminada',
+            ]);
+        } else {
+            return response()->json([
+                'success'=> false,
+                'message' => trans('app.error_again')
+            ]);
+        }
     }
 }

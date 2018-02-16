@@ -21,4 +21,9 @@ class NumConsult extends Model
     protected $fillable = [
     'name_consult'
     ];
+
+    public function appointment()
+    {
+        return $this->hasMany('App\Appointment', 'num_consult_id');
+    }
 }

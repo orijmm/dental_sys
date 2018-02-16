@@ -20,39 +20,33 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="num_consult_id">Número de consultorio</label>
           <div class="col-sm-10">
-          {!!Form::select('num_consult_id', ['1' => '10', '2' => '7'],null, ['class' => 'form-control'])!!}
+          {!!Form::select('num_consult_id', $numconsult,null, ['class' => 'form-control'])!!}
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="patient_id">Paciente</label>
           <div class="col-sm-10">
-          {!!Form::select('patient_id', ['1' => 'Seleccione', '2' => 'Alex'],null, ['class' => 'form-control'])!!} 
+          {!!Form::select('patient_id', $patients,null, ['class' => 'form-control'])!!} 
           <a  href="{{route('patient.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar paciente</small></a>
           </div>
         </div>
         <div  class="form-group">
           <label class="col-md-2 control-label" for="specialist_id">Especilista </label>
           <div class="col-sm-10">
-          {!!Form::select('specialist_id', ['1' => 'Seleccione', '2' => 'doctora2'],null, ['class' => 'form-control'])!!}
+          {!!Form::select('specialist_id',$specialists,null, ['class' => 'form-control'])!!}
           <a  href="{{route('specialist.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar especialista</small></a>
            </div>
         </div>
-        <div class="form-group">
-        <label class="col-md-2 control-label" for="elije">Condición </label>
+        <div  class="form-group">
+          <label class="col-md-2 control-label" for="elije">Condición </label>
           <div class="col-sm-10">
-            <div class="radio">
-              <label>
-                @foreach($appointment->getchoose() as $choose)
-                <input type="radio" name="elije" value="{{$choose}}">{{$choose}}<br>
-                @endforeach
-              </label>
-            </div>
-          </div>
+          {!!Form::select('elije', ['1' => 'Emergencia', '2' => 'Control', '3' => 'Primera Cita'],null, ['class' => 'form-control'])!!}
+           </div>
         </div>
         <div  class="form-group">
           <label class="col-md-2 control-label" for="status">Status </label>
           <div class="col-sm-10">
-          {!!Form::select('status', ['1' => 'Seleccione', '2' => 'doctora2'],null, ['class' => 'form-control'])!!}
+          {!!Form::select('status', ['1' => 'Activo', '2' => 'Inactivo'],null, ['class' => 'form-control'])!!}
            </div>
         </div>
         <div class="form-group">
@@ -86,6 +80,7 @@
   $(document).ready(function() {
 
       $('#datetime').datetimepicker({
+        format: 'DD-MM-YYYY h:mm a'
       });
    
   });

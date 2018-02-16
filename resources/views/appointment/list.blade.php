@@ -6,17 +6,13 @@
     </tr>
   </thead>
   <tbody>
+    @if(count($appointments))
+      @foreach($appointments as $cita)
     <tr>
-      <td><a href="{{route('appointment.show',1)}}" class="label label-info pull-right"><i class="fa fa-info fa-2x"></i></a> CONSULTORIO: 1<br>ESPECIALISTA: Camila Palacios<br>PACIENTE: Mayela Baez<br>CONDICIÓN: (Control)</td>
-      <td class="bg-info"><h4><i class="fa fa-clock-o"></i> 8:00 AM</h4><br><h4><i class="fa fa-calendar"></i> 12/04/2018</h4></td>
+      <td><a href="{{route('appointment.show',$cita->id)}}" class="label label-info pull-right"><i class="fa fa-info fa-2x"></i></a> CONSULTORIO: {{$cita->numconsults->name_consult}}<br>ESPECIALISTA: {{$cita->specialties->full_name}}<br>PACIENTE: {{$cita->patient->full_name}}<br>CONDICIÓN: {{$cita->elije}}</td>
+      <td class="bg-info"><h4><i class="fa fa-calendar"></i> {{$cita->datetime}}</h4></td>
     </tr>
-    <tr>
-      <td><a class="label label-info pull-right"><i class="fa fa-info fa-2x"></i></a> CONSULTORIO: 1<br>ESPECIALISTA: Camila Palacios<br>PACIENTE: Mayela Baez<br>CONDICIÓN: (Control)</td>
-      <td class="bg-info"><h4><i class="fa fa-clock-o"></i> 8:00 AM</h4><br><h4><i class="fa fa-calendar"></i> 12/04/2018</h4></td>
-    </tr>
-    <tr>
-      <td><a class="label label-info pull-right"><i class="fa fa-info fa-2x"></i></a> CONSULTORIO: 1<br>ESPECIALISTA: Camila Palacios<br>PACIENTE: Mayela Baez<br>CONDICIÓN: (Control)</td>
-      <td class="bg-info"><h4><i class="fa fa-clock-o"></i> 8:00 AM</h4><br><h4><i class="fa fa-calendar"></i> 12/04/2018</h4></td>
-    </tr>
+      @endforeach
+    @endif
   </tbody>
 </table>

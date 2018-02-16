@@ -23,7 +23,8 @@ class HistoryController extends Controller
      */
     public function create()
     {
-        return view('history.create');
+        $edit = false;
+        return view('history.create', compact('edit'));
     }
 
     /**
@@ -56,7 +57,8 @@ class HistoryController extends Controller
      */
     public function edit($id)
     {
-        return view('history.create');
+        $edit = true;
+        return view('history.create', compact('edit'));
     }
 
     /**

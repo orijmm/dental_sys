@@ -12,7 +12,9 @@
             <small>Médicas</small></h2>
       </div>
       <div class="panel-body">
+        <div id="content-table">
          @include('numconsult.list')
+        </div>
       </div>
       <div class="panel-footer">
         <a  href="{{route('numconsult.create')}}" class="btn btn-success">Nuevo número de consultorio</a>

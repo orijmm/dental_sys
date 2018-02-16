@@ -69,6 +69,7 @@
   $(document).ready(function() {
 
       $('#birthday').datetimepicker({
+        format: 'DD-MM-YYYY'
       });
    
   });

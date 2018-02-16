@@ -13,9 +13,9 @@
       </div>
             <div class="panel-body">
          @if($edit)
-        {!! Form::model($patient, ['route' => ['patient.update', $patient->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+        {!! Form::model($specialty, ['route' => ['specialty.update', $specialty->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
         @else
-         {!! Form::open(['route' => 'patient.store', 'class' => 'form-horizontal']) !!}
+         {!! Form::open(['route' => 'specialty.store', 'class' => 'form-horizontal']) !!}
         @endif
         <div class="form-group">
           <label class="col-md-2 control-label" for="name">Nombre Especialidad</label>
@@ -28,6 +28,7 @@
         <button type="submit" class="btn btn-success">Guardar</button>
         <a href="{{route('specialty.index')}}" class="btn btn-info pull-right"><i class="fa fa-list"></i> Listado de especialidades</a>
       </div>
+      {!! Form::close() !!}
     </div>
 </div>
 

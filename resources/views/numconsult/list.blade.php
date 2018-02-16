@@ -4,33 +4,21 @@
     <th>Acciones</th>
   </thead>
 <tbody>
-  <tr>
-      <td>Consultorio 1</td>
-      <td>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
-  <tr>
-      <td>Consultorio 2</td>
-      <td>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
-  <tr>
-      <td>Consultorio 3</td>
-      <td>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
-  <tr>
-      <td>Consultorio 4</td>
-      <td>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
+  @if(count($numconsult))
+    @foreach($numconsult as $nconsul)
+    <tr>
+        <td>Consultorio {{$nconsul->name_consult}}</td>
+        <td>
+          <a type="button" data-href="{{route('numconsult.destroy',$nconsul->id)}}" 
+                  class="btn btn-round btn-danger btn-delete" 
+                  data-confirm-text="Estas seguro de borrar?"
+                  data-confirm-delete="Si"
+                  title="Borrar" data-toggle="tooltip" data-placement="top">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+        </td>
+    </tr>
+    @endforeach
+  @endif
 </tbody>
 </table>

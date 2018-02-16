@@ -21,4 +21,9 @@ class Specialty extends Model
     protected $fillable = [
     'name'
         ];
+
+    public function specialists()
+    {
+        return $this->hasMany('App\Specialist', 'specialty_id');
+    }
 }

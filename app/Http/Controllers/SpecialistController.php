@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Specialist;
+use App\Specialty;
 
 class SpecialistController extends Controller
 {
@@ -11,9 +13,23 @@ class SpecialistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('specialist.index');
+        $specialist = Specialist::paginate(10);
+        if ( $request->ajax() ) {
+            if (count($specialist)) {
+                return response()->json([
+                    'success' => true,
+                    'view'    => view('specialist.list', compact('specialist'))->render(),
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => trans('app.no_records_found')
+                ]);
+            }
+        }
+        return view('specialist.index', compact('specialist'));
     }
 
     /**
@@ -24,7 +40,8 @@ class SpecialistController extends Controller
     public function create()
     {
         $edit = false;
-        return view('specialist.create', compact('edit'));
+        $specialties = Specialty::pluck('name', 'id');
+        return view('specialist.create', compact('edit', 'specialties'));
     }
 
     /**
@@ -35,7 +52,13 @@ class SpecialistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $specialist = Specialist::create($request->all());
+        if ( $specialist ) {
+                return redirect()->route('specialist.index', compact('specialist'))->withSuccess('Especialista creado con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -46,7 +69,8 @@ class SpecialistController extends Controller
      */
     public function show($id)
     {
-        return view('specialist.show');
+        $specialist = Specialist::find($id);
+        return view('specialist.show', compact('specialist'));
     }
 
     /**
@@ -58,7 +82,8 @@ class SpecialistController extends Controller
     public function edit($id)
     {
         $edit = true;
-        return view('specialist.create', compact('edit'));
+        $specialist = Specialist::find($id);
+        return view('specialist.create', compact('edit', compact('specialist')));
     }
 
     /**
@@ -70,7 +95,13 @@ class SpecialistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $specialist = Specialist::find($id)->update($request->all());
+        if ( $specialist ) {
+                return redirect()->route('specialist.index', compact('specialist'))->withSuccess('Especialista actualizado con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -81,6 +112,18 @@ class SpecialistController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $deletespecialist = Specialist::find($id);
+        if ( $deletespecialist->delete() ) {
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Especialista eliminado',
+            ]);
+        } else {
+            return response()->json([
+                'success'=> false,
+                'message' => trans('app.error_again')
+            ]);
+        }
     }
 }

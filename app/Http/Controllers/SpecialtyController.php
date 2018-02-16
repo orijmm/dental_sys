@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Specialty;
+use App\Http\Requests\SaveSpecialty;
 
 class SpecialtyController extends Controller
 {
@@ -11,9 +13,23 @@ class SpecialtyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('specialty.index');
+        $specialty = Specialty::paginate(10);
+        if ( $request->ajax() ) {
+            if (count($specialty)) {
+                return response()->json([
+                    'success' => true,
+                    'view'    => view('specialty.list', compact('specialty'))->render(),
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => trans('app.no_records_found')
+                ]);
+            }
+        }
+        return view('specialty.index', compact('specialty'));
     }
 
     /**
@@ -33,20 +49,15 @@ class SpecialtyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveSpecialty $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('specialty.show');
+        $specialty = Specialty::create($request->all());
+        if ( $specialty ) {
+                return redirect()->route('specialty.index', compact('specialty'))->withSuccess('Especialidad creada con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -58,7 +69,8 @@ class SpecialtyController extends Controller
     public function edit($id)
     {
         $edit = true;
-        return view('specialty.create', compact('edit'));
+        $specialty = Specialty::find($id);
+        return view('specialty.create', compact('edit', 'specialty'));
     }
 
     /**
@@ -68,9 +80,15 @@ class SpecialtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveSpecialty $request, $id)
     {
-        //
+        $specialty = Specialty::find($id)->update($request->all());
+        if ( $specialty ) {
+                return redirect()->route('specialty.index', compact('specialty'))->withSuccess('Especialidad actualizada con exito');
+                
+        } else {    
+            return back()->withErrors($messages);   
+        }
     }
 
     /**
@@ -81,6 +99,18 @@ class SpecialtyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deletespecialty = Specialty::find($id);
+        if ( $deletespecialty->delete() ) {
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Especialidad eliminada',
+            ]);
+        } else {
+            return response()->json([
+                'success'=> false,
+                'message' => trans('app.error_again')
+            ]);
+        }
     }
 }

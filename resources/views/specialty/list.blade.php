@@ -4,17 +4,21 @@
     <th>Acciónes</th>
   </thead>
 <tbody>
+  @if(count($specialty))
+    @foreach($specialty as $especialidad)
   <tr>
-      <td>Especialidad 1</td>
-      <td><a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+      <td>{{$especialidad->name}}</td>
+      <td><a href="{{route('specialty.edit', $especialidad->id)}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+          <a type="button" data-href="{{route('specialty.destroy',$especialidad->id)}}" 
+                  class="btn btn-round btn-danger btn-delete" 
+                  data-confirm-text="Estas seguro de borrar?"
+                  data-confirm-delete="Si"
+                  title="Borrar" data-toggle="tooltip" data-placement="top">
+                    <i class="fa fa-trash-o"></i>
+                </a>
       </td>
   </tr>
-  <tr>
-      <td>Especialidad 2</td>
-      <td><a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-          <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
+    @endforeach
+  @endif
 </tbody>
 </table>

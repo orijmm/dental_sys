@@ -8,15 +8,39 @@
 <img src="{{asset('public/images/banner1.png')}}" class="img-responsive">
     <div class="panel">
       <div class="panel-heading">
-      <h2 class="text-center"> CITAS
-            <small>Médicas</small></h2>
+      <h2 class="text-center"> HISTORIAL
+            <small>Médico </small></h2>
       </div>
       <div class="panel-body">
-         formulario
+         @if($edit)
+        {!! Form::model($history, ['route' => ['history.update', $history->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+        @else
+         {!! Form::open(['route' => 'history.store', 'class' => 'form-horizontal']) !!}
+        @endif
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="patient_id">Paciente</label>
+          <div class="col-sm-10">
+          {!!Form::select('patient_id', ['1' => '10', '2' => '7'],null, ['class' => 'form-control'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="specialist_id">Epecialista</label>
+          <div class="col-sm-10">
+          {!!Form::select('specialist_id', ['1' => '10', '2' => '7'],null, ['class' => 'form-control'])!!}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="observations">Observaciones</label>
+          <div class="col-sm-10">
+          <input type="text" name="observations" class="form-control" placeholder="Observaciones">
+          </div>
+        </div>
       </div>
       <div class="panel-footer">
-        <a href="{{route('history.index')}}" class="btn btn-success">Listado de citas</a>
+      <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{{route('history.index')}}" class="btn btn-info pull-right">Busqueda de historiales</a>
       </div>
+      {!! Form::close() !!}
     </div>
 </div>
 

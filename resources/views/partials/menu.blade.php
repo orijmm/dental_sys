@@ -10,12 +10,12 @@
       </a>
     </li>
     <li>
-      <a class="menu" href="{{ route('appointment.index') }}" title="@lang('app.users')">
+      <a class="menu" href="{{ route('appointment.index') }}" title="@lang('app.appointment')">
       <i class="fa fa-align-justify"></i><span> Citas Medicas</span>
       </a>
     </li>
     <li>
-      <a class="menu" href="{{ route('history.index') }}" title="@lang('app.users')">
+      <a class="menu" href="{{ route('history.index') }}" title="@lang('app.history')">
       <i class="fa fa-h-square"></i><span> Historias Dentales</span>
       </a>
     </li>
@@ -28,6 +28,15 @@
       <a class="menu" href="{{ route('user.index') }}" title="@lang('app.users')">
       <i class="fa fa-line-chart"></i><span> Reportes</span>
       </a>
+    </li>
+    <li>
+      <a class="submenu {{ Request::is('specialty*') || Request::is('numconsult*') ? 'active' : ''  }}" href="#" title="Miselaneos" data-id="miselaneos-sub">
+      <i class="fa fa-list"></i><span> Miselaneos</span>
+      </a>
+      <ul id="miselaneos-sub" class="accordion">
+        <li><a href="{{ route('specialty.index') }}" class="{{ Request::is('specialty*') ? 'active' : ''  }}" ><i class="fa fa-user"></i><span>Especialidades</span></a></li>
+        <li><a href="{{ route('numconsult.index') }}" class="{{ Request::is('numconsult*') ? 'active' : ''  }}"><i class="fa fa-check-square"></i><span> N de consultorio </span></a></li>
+      </ul>
     </li>
    @permission(('users.manage'))
     <li>

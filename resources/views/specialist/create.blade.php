@@ -13,14 +13,14 @@
       </div>
       <div class="panel-body">
          @if($edit)
-        {!! Form::model($patient, ['route' => ['patient.update', $patient->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+        {!! Form::model($specialist, ['route' => ['specialist.update', $specialist->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
         @else
-         {!! Form::open(['route' => 'patient.store', 'class' => 'form-horizontal']) !!}
+         {!! Form::open(['route' => 'specialist.store', 'class' => 'form-horizontal']) !!}
         @endif
         <div class="form-group">
           <label class="col-md-2 control-label" for="specialty_id">Especialidad</label>
           <div class="col-sm-10">
-          {!!Form::select('specialty_id', ['1' => 'higi1', '2' => 'higi2'],null, ['class' => 'form-control'])!!}<a  href="{{route('specialty.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar especialidad</small></a>
+          {!!Form::select('specialty_id', $specialties,null, ['class' => 'form-control'])!!}<a  href="{{route('specialty.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar especialidad</small></a>
           </div>
         </div>
         <div class="form-group">
@@ -56,7 +56,7 @@
         <div  class="form-group">
           <label class="col-md-2 control-label" for="status">Status </label>
           <div class="col-sm-10">
-          {!!Form::select('status', ['1' => 'Seleccione', '2' => 'doctora2'],null, ['class' => 'form-control'])!!}
+          {!!Form::select('status', ['0' => 'Inactivo', '1' => 'Activo'],1, ['class' => 'form-control'])!!}
            </div>
         </div>
       </div>

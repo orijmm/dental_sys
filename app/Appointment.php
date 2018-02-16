@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Appointment extends Model
 {
@@ -36,5 +37,34 @@ class Appointment extends Model
     public function getchoose()
     {
         return $this->choose;
+    }
+
+    public function setDatetimeAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['datetime'] = Carbon::createFromFormat('d-m-Y H:i A', $value)->format('Y-m-d H:i');
+        }
+    }
+
+    public function getDatetimeAttribute($date)
+    {
+        if ($date) {
+            return Carbon::parse($date)->format('d-m-Y h:i A');
+        }
+    }
+
+    public function numconsults()
+    {
+        return $this->belongsTo('App\NumConsult', 'num_consult_id');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo('App\Patient', 'patient_id');
+    }
+
+    public function specialties()
+    {
+        return $this->belongsTo('App\Specialist', 'specialist_id');
     }
 }

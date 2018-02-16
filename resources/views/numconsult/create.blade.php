@@ -19,7 +19,7 @@
         @endif
         <div class="form-group">
           <label for="name_consult">Número de consultorio</label>
-          <input type="number" class="form-control" placeholder="Número de consultorio">
+          <input type="number" name="name_consult" class="form-control" placeholder="Número de consultorio">
         </div>
       </div>
       <div class="panel-footer">

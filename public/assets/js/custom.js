@@ -257,7 +257,6 @@ $(document).on('click', '.btn-delete', function () {
                         if(response.success) {  
                             notify('success', response.message);
                             getPages(CURRENT_URL);
-                            //row.remove();
                         } else {
                             notify('error', response.message);
                         }

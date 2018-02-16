@@ -12,7 +12,9 @@
             <small>Médicos</small></h2>
       </div>
       <div class="panel-body">
+          <div id="content-table">
          @include('specialist.list')
+          </div>
       </div>
       <div class="panel-footer">
         <a  href="{{route('specialist.create')}}" class="btn btn-info">Nuevo Especialista</a>

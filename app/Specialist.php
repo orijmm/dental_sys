@@ -27,4 +27,19 @@ class Specialist extends Model
     'dni',
     'status'
     ];
+
+    public function getFullNameAttribute($value)
+    {
+       return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
+    }
+    
+    public function specialties()
+    {
+        return $this->belongsTo('App\Specialty', 'specialty_id');
+    }
+
+    public function appointment()
+    {
+        return $this->hasMany('App\Appointment', 'specialist_id');
+    }
 }
