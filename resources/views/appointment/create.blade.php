@@ -20,20 +20,20 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="num_consult_id">Número de consultorio</label>
           <div class="col-sm-10">
-          {!!Form::select('num_consult_id', $numconsult,null, ['class' => 'form-control'])!!}
+          {!!Form::select('num_consult_id', $numconsult,null, ['placeholder' => 'Seleccione', 'class' => 'form-control'])!!}
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="patient_id">Paciente</label>
           <div class="col-sm-10">
-          {!!Form::select('patient_id', $patients,null, ['class' => 'form-control'])!!} 
+          {!!Form::select('patient_id', $patients,null, ['placeholder' => 'Selecione' ,'class' => 'form-control'])!!} 
           <a  href="{{route('patient.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar paciente</small></a>
           </div>
         </div>
         <div  class="form-group">
           <label class="col-md-2 control-label" for="specialist_id">Especilista </label>
           <div class="col-sm-10">
-          {!!Form::select('specialist_id',$specialists,null, ['class' => 'form-control'])!!}
+          {!!Form::select('specialist_id',$specialists,null, ['placeholder' => 'Selecione', 'class' => 'form-control'])!!}
           <a  href="{{route('specialist.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar especialista</small></a>
            </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="form-group">
         <label class="col-md-2 control-label" for="datetime">Fecha y hora </label>
           <div class='col-md-5 input-group date' id='datetime'>
-              <input type='text' name="datetime" class="form-control" />
+          {!! Form::text('datetime',old('datetimepicker'),['class' => 'form-control'])!!}
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>

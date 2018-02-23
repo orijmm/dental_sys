@@ -32,7 +32,7 @@ class Specialist extends Model
     {
        return ucfirst($this->name) . ' ' . ucfirst($this->last_name);
     }
-    
+
     public function specialties()
     {
         return $this->belongsTo('App\Specialty', 'specialty_id');
@@ -41,5 +41,10 @@ class Specialist extends Model
     public function appointment()
     {
         return $this->hasMany('App\Appointment', 'specialist_id');
+    }
+
+    public function histories()
+    {
+        return $this->hasMany('App\History', 'specialist_id');
     }
 }

@@ -388,7 +388,7 @@ $(document).on('click', '.search', function () {
         $.ajax({
             url: CURRENT_URL,
             type:"GET",
-            data:{ search: term },
+            data:{ search: term, opcion : opcion },
             dataType: 'json',
             success: function(response) {
                 hideLoading();
@@ -402,6 +402,41 @@ $(document).on('click', '.search', function () {
             error: function (status) {
                 hideLoading();
                 notify('error', status.statusText);
+                console.log('maaaa');
+            }
+        });
+    } else {
+        //
+    }
+});
+
+// search history
+$(document).on('click', '.searchhistory', function () {
+    showLoading();
+    var term = $('#term').val();
+    var term2 = $('#term2').val();
+    var opcion = $('#selectbasic').val();
+    var $this = $(this);
+    $('.search-cancel').show();
+    if(term || term){
+        $.ajax({
+            url: CURRENT_URL,
+            type:"GET",
+            data:{ search: term,search2: term2, opcion : opcion },
+            dataType: 'json',
+            success: function(response) {
+                hideLoading();
+                if(response.success){
+                    $('#content-table').html(response.view);
+                    loadResposiveTable();
+                } else {
+                    notify('error', response.message);
+                }
+            },
+            error: function (status) {
+                hideLoading();
+                notify('error', status.statusText);
+                console.log('maaaa');
             }
         });
     } else {
@@ -522,3 +557,14 @@ $(document).ready(function() {
 
 });
 // /script general
+
+$(document).on('change', '#selectbasic', function(){
+    if ($(this).val() == 2) {
+        $('#term2').removeClass('hide');
+        $('#term').hide();
+    } else {
+        $('#term2').addClass('hide');
+        $('#term').show();
+    }
+
+});

@@ -40,6 +40,11 @@ class Patient extends Model
         }
     }
 
+    public function getAge() 
+    {
+        return Carbon::createFromFormat('d-m-Y', $this->birthday)->diffInYears(Carbon::now());
+    }   
+
     public function getFullName2Attribute()
     {
         return ucwords($this->full_name);
@@ -48,5 +53,10 @@ class Patient extends Model
     public function appointment()
     {
         return $this->hasMany('App\Appointment', 'patient_id');
+    }
+
+    public function histories()
+    {
+        return $this->hasOne('App\History', 'patient_id');
     }
 }

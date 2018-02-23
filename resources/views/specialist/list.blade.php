@@ -19,9 +19,15 @@
       <td>@if($specialista->status == '1') <button class="btn btn-success btn-sm">Activo</button> @else <button class="btn btn-default btn-sm">Inactivo</button> @endif</td>
       <td>{{$specialista->specialties->name}}</td>
       <td>
-        <a href="#" class="btn btn-info"><i class="fa fa-info"></i></a>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+        <a href="{{route('specialist.show', $specialista->id)}}" class="btn btn-info"><i class="fa fa-info"></i></a>
+        <a href="{{route('specialist.edit', $specialista->id)}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+        <a type="button" data-href="{{route('specialist.destroy', $specialista->id)}}" 
+                  class="btn btn-round btn-danger btn-delete" 
+                  data-confirm-text="Estas seguro de borrar?"
+                  data-confirm-delete="Si"
+                  title="Borrar" data-toggle="tooltip" data-placement="top">
+                    <i class="fa fa-trash-o"></i>
+                </a>
       </td>
   </tr>
     @endforeach

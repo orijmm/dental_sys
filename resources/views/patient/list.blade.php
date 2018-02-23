@@ -7,38 +7,26 @@
     <th>Acciones</th>
   </thead>
 <tbody>
+  @if(count($patient))
+    @foreach($patient as $patients)
   <tr>
-      <td>Mayela Baez</td>
-      <td>12345678</td>
-      <td>23</td>
-      <td>0424-4534546</td>
+      <td>{{$patients->full_name}}</td>
+      <td>{{$patients->dni}}</td>
+      <td>{{$patients->getAge()}}</td>
+      <td>{{$patients->phone}}</td>
       <td>
-        <a href="#" class="btn btn-info"><i class="fa fa-info"></i></a>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+        <a href="{{route('patient.show',$patients->id)}}" class="btn btn-info"><i class="fa fa-info"></i></a>
+        <a href="{{route('patient.edit',$patients->id)}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+        <a type="button" data-href="{{route('patient.destroy',$patients->id)}}" 
+                  class="btn btn-round btn-danger btn-delete" 
+                  data-confirm-text="Estas seguro de borrar?"
+                  data-confirm-delete="Si"
+                  title="Borrar" data-toggle="tooltip" data-placement="top">
+                    <i class="fa fa-trash-o"></i>
+                </a>
       </td>
   </tr>
-  <tr>
-      <td>Maria Perez</td>
-      <td>23456765</td>
-      <td>18</td>
-      <td>0424-4534546</td>
-      <td>
-        <a href="#" class="btn btn-info"><i class="fa fa-info"></i></a>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
-  <tr>
-      <td>Carlos Paredes</td>
-      <td>12456789</td>
-      <td>34</td>
-      <td>0424-4534546</td>
-      <td>
-        <a href="#" class="btn btn-info"><i class="fa fa-info"></i></a>
-        <a href="#" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-      </td>
-  </tr>
+    @endforeach
+  @endif
 </tbody>
 </table>

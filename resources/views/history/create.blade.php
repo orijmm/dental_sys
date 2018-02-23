@@ -20,13 +20,13 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="patient_id">Paciente</label>
           <div class="col-sm-10">
-          {!!Form::select('patient_id', ['1' => '10', '2' => '7'],null, ['class' => 'form-control'])!!}
+          {!!Form::select('patient_id', $patients,null, ['class' => 'form-control'])!!}
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="specialist_id">Epecialista</label>
           <div class="col-sm-10">
-          {!!Form::select('specialist_id', ['1' => '10', '2' => '7'],null, ['class' => 'form-control'])!!}
+          {!!Form::select('specialist_id', $specialists,null, ['class' => 'form-control'])!!}
           </div>
         </div>
         <div class="form-group">

@@ -20,25 +20,25 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="full_name">Nombre completo</label>
           <div class="col-sm-10">
-          {!!Form::text('full_name',null, ['class' => 'form-control'])!!}
+          {!!Form::text('full_name',old('full_name'), ['class' => 'form-control'])!!}
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="dni">Cedula</label>
           <div class="col-sm-10">
-          {!!Form::text('dni',null, ['class' => 'form-control'])!!} 
+          {!!Form::text('dni',old('dni'), ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="phone">Teléfono</label>
           <div class="col-sm-10">
-          {!!Form::text('phone',null, ['class' => 'form-control'])!!}
+          {!!Form::text('phone',old('phone'), ['class' => 'form-control'])!!}
           </div>
         </div>
         <div class="form-group">
         <label class="col-md-2 control-label" for="birthday">Fecha de Nacimiento </label>
           <div class='col-md-5 input-group date' id='birthday'>
-              <input type='text' name="birthday" class="form-control" />
+              {!! Form::text('birthday',old('birthday'),['class' => 'form-control']) !!}
               <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar"></span>
               </span>

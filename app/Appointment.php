@@ -63,7 +63,7 @@ class Appointment extends Model
         return $this->belongsTo('App\Patient', 'patient_id');
     }
 
-    public function specialties()
+    public function specialists()
     {
         return $this->belongsTo('App\Specialist', 'specialist_id');
     }

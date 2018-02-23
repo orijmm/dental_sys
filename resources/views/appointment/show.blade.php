@@ -18,15 +18,21 @@
           </header>
           <div>
             <div class="inner-spacer">
-             CONSULTORIO: 1<br>ESPECIALISTA: Camila Palacios<br>PACIENTE: Mayela Baez<br>CONDICIÓN: (Control)
-            <br><i class="fa fa-clock-o"></i> 8:00 AM<br><i class="fa fa-calendar"></i> 12/04/2018
+             CONSULTORIO: N° {{$appointment->numconsults->name_consult}}<br>ESPECIALISTA: {{$appointment->specialists->full_name}}<br>PACIENTE: {{$appointment->patient->full_name}}<br>CONDICIÓN: {{$appointment->elije}}
+            <br><i class="fa fa-clock-o"></i> <time>{{$appointment->datetime}}</time>
             </div>
           </div>
         </div>     
       </div>
       <div class="panel-footer">
-      <button class="btn btn-warning"><i class="fa fa-pencil"></i> Editar Cita</button>
-      <button class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar Cita</button>
+      <a href="{{route('appointment.edit', $appointment->id)}}"><button class="btn btn-warning"><i class="fa fa-pencil"></i> Editar Cita</button></a>
+      <a type="button" data-href="{{route('appointment.destroy',$appointment->id)}}" 
+                  class="btn btn-round btn-danger btn-delete" 
+                  data-confirm-text="Estas seguro de borrar?"
+                  data-confirm-delete="Si"
+                  title="Borrar" data-toggle="tooltip" data-placement="top">
+                    <i class="fa fa-trash-o"></i> Eliminar cita
+                </a>
         <a href="{{route('appointment.index')}}" class="btn btn-success">Listado de citas</a>
       </div>
     </div>

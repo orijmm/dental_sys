@@ -83,7 +83,8 @@ class SpecialistController extends Controller
     {
         $edit = true;
         $specialist = Specialist::find($id);
-        return view('specialist.create', compact('edit', compact('specialist')));
+        $specialties = Specialty::pluck('name','id');
+        return view('specialist.create', compact('edit', 'specialist', 'specialties'));
     }
 
     /**

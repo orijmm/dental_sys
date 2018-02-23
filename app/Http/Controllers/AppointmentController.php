@@ -88,7 +88,10 @@ class AppointmentController extends Controller
     {
         $edit = true;
         $appointment = Appointment::find($id);
-        return view('appointment.create', compact('edit', 'appointments'));
+        $numconsult = Numconsult::pluck('name_consult', 'id');
+        $patients = Patient::all()->pluck('full_name2', 'id');
+        $specialists = Specialist::all()->pluck( 'full_name','id');
+        return view('appointment.create', compact('edit', 'appointment', 'numconsult', 'patients', 'specialists'));
     }
 
     /**

@@ -15,7 +15,6 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cod', 100);
             $table->integer('patient_id')->unsigned();
             $table->integer('odontogram_id')->unsigned();
             $table->text('observations')->nullable();

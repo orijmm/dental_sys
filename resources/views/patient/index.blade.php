@@ -12,7 +12,9 @@
             <small>Listado de pacientes</small></h2>
       </div>
       <div class="panel-body">
+        <div id="content-table">
          @include('patient.list')
+        </div>
       </div>
       <div class="panel-footer">
         <a  href="{{route('patient.create')}}" class="btn btn-info">Nuevo paciente</a>

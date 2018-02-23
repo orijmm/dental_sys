@@ -21,4 +21,14 @@ class Odontogram extends Model
     protected $fillable = [
     'patient_id'
     ];
+
+    public function histories()
+    {
+        return $this->hasOne('App\History', 'odontogram_id');
+    }
+
+    public function teeth()
+    {
+        return $this->hasMany('App\Teeth', 'odontogram_id');
+    }
 }

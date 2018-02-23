@@ -12,10 +12,25 @@
             <small>Dentales</small></h2>
       </div>
       <div class="panel-body">
-         @include('history.list')
+        <div class="form-group">
+          <select id="selectbasic" name="selectbasic" class="form-control">
+            <option value="1">Cédula de identidad</option>
+            <option value="2">Especialista</option>
+            <option value="3">Número de historia</option>
+          </select>
+        </div>  
+        <div class="form-group">
+          <input type="text" id="term" name="term" class="form-control col-md-12"  placeholder="Ingrese término">
+          {!! Form::select('term2', $specialists, null, ['id'=>'term2','placeholder' => 'Seleccione', 'class' => 'form-control hide']) !!}
+        </div>
+        <br>
+        <button type="button" id="search"  class="btn btn-default searchhistory">Buscar</button>
+        <br>
+        <br>
+          <div id="content-table"></div>
       </div>
       <div class="panel-footer">
-        <a  href="{{route('history.create')}}" class="btn btn-info pull-right">Nuevo Historial</a>
+        <a  href="{{route('history.create')}}" class="btn btn-info">Nuevo Historial</a>
       </div>
     </div>
 </div>

@@ -19,10 +19,24 @@ class History extends Model
      * @var array
      */
     protected $fillable = [
-      'cod' ,
 	  'patient_id',
 	  'odontogram_id',
 	  'observations',
 	  'specialist_id'
     ];
+
+    public function specialist()
+    {
+        return $this->belongsTo('App\Specialist', 'specialist_id');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo('App\Patient', 'patient_id');
+    }
+
+    public function odontogram()
+    {
+        return $this->belongsTo('App\Odontogram', 'odontogram_id');
+    }
 }

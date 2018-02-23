@@ -28,7 +28,7 @@ class PatientController extends Controller
                 ]);
             }
         }
-        return view('patient.index');
+        return view('patient.index', compact('patient'));
     }
 
     /**
@@ -68,7 +68,7 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
-        return view('patient.show');
+        return view('patient.show', compact('patient'));
     }
 
     /**
@@ -81,7 +81,7 @@ class PatientController extends Controller
     {
         $edit = true;
         $patient = Patient::find($id);
-        return view('patient.create', compact('edit'));
+        return view('patient.create', compact('edit', 'patient'));
     }
 
     /**

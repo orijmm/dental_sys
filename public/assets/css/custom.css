@@ -9391,3 +9391,40 @@ a.panel-link:hover {
 .loader-default[data-inverse]:after {
     animation-direction: reverse
 }
+
+/* odontograma*/
+
+.circle_odonto_back{
+  background-image: url(../images/back_odo.jpg);
+  width: 32px;
+  height: 32px;
+  -moz-border-radius: 32px;
+  -webkit-border-radius: 32px;
+  border-radius: 32px;
+  background-size: contain;
+  display:inline-block;
+}
+.circle_odonto_outer {
+     width:0;
+     height:0;
+     border-right: 16px solid rgba(255,130,255,0.1);
+     border-top: 16px solid rgba(255,130,255,0.1);
+     border-left: 16px  solid rgba(255,130,255,0.1);
+     border-bottom: 16px  solid rgba(255,130,255,0.1);
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+}
+
+.circle_odonto_inner {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  top: 50%;
+   left: 50%;
+   margin: -08px 0px 0px -08px;
+   border: 1px solid #000;
+}

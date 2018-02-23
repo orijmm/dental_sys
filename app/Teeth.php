@@ -26,4 +26,9 @@ class Teeth extends Model
     'c4',
     'c5'
     ];
+
+    public function odontogram()
+    {
+        return $this->belongsTo('App\Odontogram', 'odontogram_id');
+    }
 }

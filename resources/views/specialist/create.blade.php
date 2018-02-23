@@ -20,43 +20,43 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="specialty_id">Especialidad</label>
           <div class="col-sm-10">
-          {!!Form::select('specialty_id', $specialties,null, ['class' => 'form-control'])!!}<a  href="{{route('specialty.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar especialidad</small></a>
+          {!!Form::select('specialty_id', $specialties,old('specialty_id'), ['placeholder' => 'Selecione', 'class' => 'form-control'])!!}<a  href="{{route('specialty.create')}}" class="text-info"><i class="fa fa-plus-circle fa-2x"></i><small> Agregar especialidad</small></a>
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="name">Nombre</label>
           <div class="col-sm-10">
-          {!!Form::text('name',null, ['class' => 'form-control'])!!} 
+          {!!Form::text('name',old('name'), ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="last_name">Apellido</label>
           <div class="col-sm-10">
-          {!!Form::text('last_name',null, ['class' => 'form-control'])!!} 
+          {!!Form::text('last_name',old('last_name'), ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="dni">Cédula</label>
           <div class="col-sm-10">
-          {!!Form::text('dni',null, ['class' => 'form-control'])!!} 
+          {!!Form::text('dni',old('dni'), ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="email">Email</label>
           <div class="col-sm-10">
-          {!!Form::text('email',null, ['class' => 'form-control'])!!} 
+          {!!Form::text('email',old('email'), ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label" for="phone">Teléfono</label>
           <div class="col-sm-10">
-          {!!Form::text('phone',null, ['class' => 'form-control'])!!} 
+          {!!Form::text('phone',old('phone'), ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div  class="form-group">
           <label class="col-md-2 control-label" for="status">Status </label>
           <div class="col-sm-10">
-          {!!Form::select('status', ['0' => 'Inactivo', '1' => 'Activo'],1, ['class' => 'form-control'])!!}
+          {!!Form::select('status', ['0' => 'Inactivo', '1' => 'Activo'],old('status'), ['placeholder' => 'Selecione','class' => 'form-control'])!!}
            </div>
         </div>
       </div>

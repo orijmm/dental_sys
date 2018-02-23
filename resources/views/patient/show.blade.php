@@ -9,13 +9,19 @@
     <div class="panel">
       <div class="panel-heading">
       <h2 class="text-center"> Paciente
-            <small>Nombre</small></h2>
+            <small>{{$patient->full_name}}</small></h2>
       </div>
       <div class="panel-body">
-        show      
+        <ul class="list-unstyled">
+          <li><strong>Nombre y apellido: </strong>{{$patient->full_name}}</li>
+          <li><strong>Cedula: </strong>{{$patient->dni}}</li>
+          <li><strong>Teléfono: </strong>{{$patient->phone}}</li>
+          <li><strong>Edad:</strong> {{$patient->getAge()}}
+          </li>
+        </ul>       
       </div>
       <div class="panel-footer">
-        <a href="{{route('appointment.index')}}" class="btn btn-success">Listado de citas</a>
+        <a href="{{route('patient.index')}}"><button type="submit" class="btn btn-success">Listado de pacientes</button></a>
       </div>
     </div>
 </div>
