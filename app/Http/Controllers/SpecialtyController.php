@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Specialty;
 use App\Http\Requests\SaveSpecialty;
+use App\Http\Requests\UpdateSpecialty;
 
 class SpecialtyController extends Controller
 {
@@ -80,7 +81,7 @@ class SpecialtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveSpecialty $request, $id)
+    public function update(UpdateSpecialty $request, $id)
     {
         $specialty = Specialty::find($id)->update($request->all());
         if ( $specialty ) {

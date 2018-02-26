@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NumConsultorio extends FormRequest
+class AppointmentCreate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,12 @@ class NumConsultorio extends FormRequest
     public function rules()
     {
         return [
-            'name_consult' => 'required|unique:num_consults,name_consult'
+            'num_consult_id' => 'required',
+            'patient_id' => 'required',
+            'specialist_id' => 'required',
+            'elije' => 'required',
+            'datetime'  => 'required',
+            'status' => 'required',
         ];
     }
 }

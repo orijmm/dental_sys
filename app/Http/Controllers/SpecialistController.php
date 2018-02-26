@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Specialist;
 use App\Specialty;
+use App\Http\Requests\SpecialistCreate;
+use App\Http\Requests\SpecialistUpdate;
 
 class SpecialistController extends Controller
 {
@@ -50,7 +52,7 @@ class SpecialistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SpecialistCreate $request)
     {
         $specialist = Specialist::create($request->all());
         if ( $specialist ) {
@@ -94,7 +96,7 @@ class SpecialistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SpecialistUpdate $request, $id)
     {
          $specialist = Specialist::find($id)->update($request->all());
         if ( $specialist ) {

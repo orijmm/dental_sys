@@ -418,7 +418,7 @@ $(document).on('click', '.searchhistory', function () {
     var opcion = $('#selectbasic').val();
     var $this = $(this);
     $('.search-cancel').show();
-    if(term || term){
+    if(term || term2){
         $.ajax({
             url: CURRENT_URL,
             type:"GET",
@@ -440,7 +440,8 @@ $(document).on('click', '.searchhistory', function () {
             }
         });
     } else {
-        //
+        hideLoading();
+        notify('error', 'Debe agregar un termino a la busqueda');
     }
 });
 
@@ -557,7 +558,6 @@ $(document).ready(function() {
 
 });
 // /script general
-
 $(document).on('change', '#selectbasic', function(){
     if ($(this).val() == 2) {
         $('#term2').removeClass('hide');
@@ -566,5 +566,4 @@ $(document).on('change', '#selectbasic', function(){
         $('#term2').addClass('hide');
         $('#term').show();
     }
-
 });

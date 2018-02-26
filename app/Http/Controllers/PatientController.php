@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\Http\Requests\PatientCreate;
+use App\Http\Requests\PatientUpdate;
 
 class PatientController extends Controller
 {
@@ -48,7 +50,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientCreate $request)
     {
         $patient = Patient::create($request->all());
         if ( $patient ) {
@@ -91,7 +93,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PatientUpdate $request, $id)
     {
          $patient = Patient::find($id)->update($request->all());
         if ( $patient ) {

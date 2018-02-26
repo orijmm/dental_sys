@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NumConsultorio extends FormRequest
+class UpdateSpecialty extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,9 @@ class NumConsultorio extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('specialty');
         return [
-            'name_consult' => 'required|unique:num_consults,name_consult'
+            'name' => 'required|unique:specialties,name,'.$id
         ];
     }
 }

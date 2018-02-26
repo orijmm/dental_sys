@@ -21,6 +21,7 @@ class CreateTeethsTable extends Migration
             $table->integer('c3')->nullable();
             $table->integer('c4')->nullable();
             $table->integer('c5')->nullable();
+            $table->integer('all_c')->nullable();
             $table->timestamps();
 
             $table->foreign('odontogram_id')

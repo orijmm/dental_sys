@@ -152,6 +152,16 @@ return [
         'amount'                => 'Cantidad',
         'role'                  => 'Rol',
         'name_consult'          => 'Numero de consultorio',
+        'dni'                   => 'Cédula',
+        'full_name'             => 'Nombre completo',
+        'birthday'              => 'Fecha de nacimiento',
+        'specialty_id'          => 'Especialidad',
+        'num_consult_id'        => 'Número de consultorio',
+        'patient_id'            => 'Paciente',
+        'specialist_id'         => 'Especialista',
+        'datetime'              => 'Fecha de nacimiento',
+        'elije'                 => 'Condición',
+        'odontogram_id'         => 'Odontograma',
     ],
 
 ];

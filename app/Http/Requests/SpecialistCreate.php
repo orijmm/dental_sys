@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NumConsultorio extends FormRequest
+class SpecialistCreate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,12 @@ class NumConsultorio extends FormRequest
     public function rules()
     {
         return [
-            'name_consult' => 'required|unique:num_consults,name_consult'
+            'specialty_id' => 'required',
+            'name' => 'required',
+            'last_name'  => 'required',
+            'email' => 'required|email',
+            'dni' => 'required|numeric|unique:specialists,dni',
+            'status' => 'required',
         ];
     }
 }

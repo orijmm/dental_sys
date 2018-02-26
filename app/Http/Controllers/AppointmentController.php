@@ -7,6 +7,7 @@ use App\Appointment;
 use App\Patient;
 use App\Specialist;
 use App\Numconsult;
+use App\Http\Requests\AppointmentCreate;
 
 class AppointmentController extends Controller
 {
@@ -55,7 +56,7 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AppointmentCreate $request)
     {
         $appointment = Appointment::create($request->all());
         if ( $appointment ) {

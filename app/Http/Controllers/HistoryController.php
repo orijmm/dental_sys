@@ -9,6 +9,7 @@ use App\Odontogram;
 use App\Teeth;
 use App\Specialist;
 use DB;
+use App\Http\Requests\HistorialCreate;
 
 class HistoryController extends Controller
 {
@@ -72,7 +73,7 @@ class HistoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HistorialCreate $request)
     {
         //patient exist
         $patient_exist = History::where('patient_id',$request->patient_id)->first();
