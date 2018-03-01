@@ -24,8 +24,19 @@ class Teeth extends Model
     'c2',
     'c3',
     'c4',
-    'c5'
+    'c5',
+    'all_c',
     ];
+
+    /*public function teethColors()
+    {
+        if ($this->all_c !=) {
+            # code...
+        } else {
+            # code...
+        }
+        
+    }*/
 
     public function odontogram()
     {

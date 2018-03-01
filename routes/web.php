@@ -108,3 +108,10 @@
     Route::resource('specialist', 'SpecialistController');
     Route::resource('specialty', 'SpecialtyController');
     Route::resource('teeth', 'TeethController');
+
+    Route::get('history/odonto/teeths/{id}','HistoryController@getTeeth')
+    ->name('data.teeths');
+    Route::get('history/edit/teeths/{id}','HistoryController@editTeeth')
+    ->name('edit.teeth');
+    Route::post('history/update/teeths','HistoryController@updateTeeth')
+    ->name('teeth.update');

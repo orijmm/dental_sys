@@ -19,88 +19,33 @@
           <li><strong>Télefono: </strong> {{$history->patient->phone}}</li>
           <li><strong>Especialista: </strong> {{$history->specialist->full_name}}</li>
         </ul> 
+        <input type="hidden" name="urlteeth" id="urlteeth" value="{{url('history/edit/teeths/')}}">
         <div class="well">
           <div class="row">
             <div class="col-md-8">
             <div class="row">
-              <div class="col-md-6 text-right">
-              @for($i = 0; $i < 8; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
+              <div id="odonto_1" class="col-md-6 text-right">
               </div>
-              </div>
-              @endfor
-              </div>
-              <div class="col-md-6">
-              @for($i = 8; $i < 16; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
-              </div>
-              </div>
-              @endfor
+              <div id="odonto_2" class="col-md-6">
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6  text-right">
-              @for($i = 16; $i < 21; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
+              <div id="odonto_3" class="col-md-6  text-right">
               </div>
+              <div id="odonto_4" class="col-md-6">
               </div>
-              @endfor
-              </div>
-              <div class="col-md-6">
-              @for($i = 20; $i < 25; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
-              </div>
-              </div>
-              @endfor
-              </div>
-            </div>
+            </div> 
             <div style="border-bottom: 1px solid #000; margin:20px;"></div>
             <div class="row">
-              <div class="col-md-6 text-right">
-              @for($i = 25; $i < 30; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
+              <div id="odonto_5" class="col-md-6 text-right">
               </div>
-              </div>
-              @endfor
-              </div>
-              <div class="col-md-6">
-              @for($i = 30; $i < 35; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
-              </div>
-              </div>
-              @endfor
+              <div id="odonto_6" class="col-md-6">
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6 text-right">
-              @for($i = 35; $i < 43; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
+              <div id="odonto_7" class="col-md-6 text-right">
               </div>
-              </div>
-              @endfor
-              </div>
-              <div class="col-md-6">
-              @for($i = 43; $i < 51; $i++)
-              <div class="circle_odonto_back">
-              <div class="circle_odonto_outer">
-                <div class="circle_odonto_inner"></div>
-              </div>
-              </div>
-              @endfor
+              <div id="odonto_8" class="col-md-6">
               </div>
             </div>
   
@@ -133,4 +78,29 @@
     </div>
 </div>
 
+@endsection
+@section('scripts')
+<script type="text/javascript">
+$(document).ready(function(){
+  //get all teeth parameters that have same odontogram_id
+  $.get("{{route('data.teeths',$history->id)}}", function(data, status){
+  var datos = [];
+  var loop = 1;
+  //make multiarray with different size lenght - for style purpose
+  datos[0] = data.teeth.slice(0,8);
+  datos[1] = data.teeth.slice(8,16);
+  datos[2] = data.teeth.slice(16,21);
+  datos[3] = data.teeth.slice(21,26);
+  datos[4] = data.teeth.slice(26,31);
+  datos[5] = data.teeth.slice(31,36);
+  datos[6] = data.teeth.slice(36,44);
+  datos[7] = data.teeth.slice(44,52);
+  //loop throught array calling function adddiv
+  for (var i = 0; i < datos.length; i++) {
+    addDiv(datos[i],loop);
+      loop++;
+    }
+  });
+});  
+</script>
 @endsection

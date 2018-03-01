@@ -567,3 +567,109 @@ $(document).on('change', '#selectbasic', function(){
         $('#term').show();
     }
 });
+
+//odonto
+function getBackground(allC)
+{
+  switch(allC){
+    case 0:
+    image = 'back_odo.jpg'; 
+    break;
+    case 1:
+    image = 'sellante.jpg'; 
+    break;
+    case 2:
+    image = 'sellante_in.jpg'; 
+    break;
+    case 3:
+    image = 'extra_in.jpg';
+    break;
+    case 4:
+    image = 'con_endo.jpg';
+    break;
+    case 5:
+    image =  'protesis.jpg';
+    break;
+    case 6:
+    image =  'necro_pul.jpg';
+    break;
+    case 7:
+    image =  'protesi_in.jpg';
+    break;
+    case 8:
+    image =  'clini_au.jpg';
+    break;
+  }
+  return image;
+}
+
+function getColorOdo(cColor)
+{
+  switch(cColor){
+    case 0:
+    color = '16px  solid rgba(255,130,255,0.1)';
+    break;
+    case 1:
+    color = '16px  solid #d24d33';
+    break;
+    case 2: 
+    color = '16px  solid  #3b8dbd';
+    break;
+    case 3:
+    color = '16px  solid #333333';
+    break;
+  }
+  return color;
+}
+
+function getColorC(cColor)
+{
+  switch(cColor){
+    case 0:
+    color = '#FFFFFF';
+    break;
+    case 1:
+    color = '#d24d33';
+    break;
+    case 2: 
+    color = '#3b8dbd';
+    break;
+    case 3:
+    color = '#333333';
+    break;
+  }
+  return color;
+}
+
+function addDiv(datarray,loop)
+{   
+  
+  var urlteeth = $('#urlteeth').val();
+  //loop throught all teeth
+  for (var i = 0; i < datarray.length; i++) {
+    //create 3 div and add id with each teeth (52 times) 
+    var odonto_back = $(document.createElement('div')); //all_c
+    var odonto_outer = $(document.createElement('div'));//sides of the circle
+    var odonto_inner = $(document.createElement('div'));// small circle in the middle
+    odonto_back.attr('id','circle_odonto_back_'+datarray[i].id);
+    odonto_back.addClass('create-edit-show');
+    odonto_back.attr('data-model','modal');
+    odonto_back.attr('title','Editar odontograma');
+    odonto_back.attr('data-toggle','tooltip');
+    odonto_back.attr('data-href',urlteeth+'/'+datarray[i].id);
+    odonto_outer.attr('id','circle_odonto_outer_'+datarray[i].id);
+    odonto_inner.attr('id','circle_odonto_inner_'+datarray[i].id);
+
+    if (datarray[i].all_c === 0) {
+       odonto_back.css({'background-image': 'url(../public/assets/images/back_odo.jpg)','width':'32px','height': '32px', '-moz-border-radius': '32px','-webkit-border-radius': '32px','border-radius': '32px','background-size':'contain','display':'inline-block'});
+       odonto_outer.css({'width':'0','height':'0','border-right': getColorOdo(datarray[i].c2),'border-top': getColorOdo(datarray[i].c1),'border-left': getColorOdo(datarray[i].c4),'border-bottom': getColorOdo(datarray[i].c3),'-moz-border-radius': '50%','-webkit-border-radius': '50%','border-radius': '50%'});
+       odonto_inner.css({'width': '16px','height': '16px','background': getColorC(datarray[i].c5),'-moz-border-radius': '50%','-webkit-border-radius': '50%', 'border-radius': '50%', 'top': '50%','left': '50%','margin': '-08px 0px 0px -08px', 'border': '1px solid #000'});
+    } else {
+      odonto_back.css({'background-image': 'url(../public/assets/images/'+getBackground(datarray[i].all_c)+')','width':'32px','height': '32px', '-moz-border-radius': '32px','-webkit-border-radius': '32px','border-radius': '32px','background-size':'contain','display':'inline-block'});      
+    }
+
+    $('#odonto_'+loop).append(odonto_back);
+    $('#circle_odonto_back_'+datarray[i].id).append(odonto_outer);
+    $('#circle_odonto_outer_'+datarray[i].id).append(odonto_inner);
+  }
+}

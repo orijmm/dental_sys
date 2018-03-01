@@ -86,11 +86,12 @@ class HistoryController extends Controller
             for ($i=0; $i <= 51; $i++) { 
             $dientes = Teeth::create([
                 'odontogram_id' => $odontograma->id,
-                'c1' => 0,
-                'c2' => 0,
-                'c3' => 0,
-                'c4' => 0,
-                'c5' => 0
+                'c1'    => 0,
+                'c2'    => 0,
+                'c3'    => 0,
+                'c4'    => 0,
+                'c5'    => 0,
+                'all_c' => 0
                 ]);
             }
             $history = History::create([
@@ -144,14 +145,34 @@ class HistoryController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function getTeeth($id)
     {
-        //
+        $teeths = Teeth::where('odontogram_id', $id)->get();
+        $todos = $teeths->pluck('id')->all();
+        return response()->json([
+            'teeth' => $teeths,
+            'todos' => $todos
+            ]);
+    }
+
+    public function editTeeth($id)
+    {
+        $teeth = Teeth::find($id);
+        if ($teeth) {
+            return response()->json([
+            'success' => true,
+            'view' => view('history.edit_teeth', compact('teeth'))->render()
+            ]);
+        } else {
+            return response()->json([
+            'success' => false,
+            'message' => 'error'
+            ]);
+        } 
+    }
+
+    public function updateTeeth()
+    {
+        
     }
 }

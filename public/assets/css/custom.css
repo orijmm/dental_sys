@@ -9394,16 +9394,6 @@ a.panel-link:hover {
 
 /* odontograma*/
 
-.circle_odonto_back{
-  background-image: url(../images/back_odo.jpg);
-  width: 32px;
-  height: 32px;
-  -moz-border-radius: 32px;
-  -webkit-border-radius: 32px;
-  border-radius: 32px;
-  background-size: contain;
-  display:inline-block;
-}
 .circle_odonto_outer {
      width:0;
      height:0;
