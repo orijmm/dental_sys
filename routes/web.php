@@ -113,5 +113,10 @@
     ->name('data.teeths');
     Route::get('history/edit/teeths/{id}','HistoryController@editTeeth')
     ->name('edit.teeth');
-    Route::post('history/update/teeths','HistoryController@updateTeeth')
+    Route::put('history/update/teeths/{id}','HistoryController@updateTeeth')
     ->name('teeth.update');
+
+    Route::get('appointment/search/calendar','AppointmentController@search')
+    ->name('appointment.calendar');
+
+    Route::post('appointment/post/calendar','AppointmentController@search')->name('appointment.search.post');

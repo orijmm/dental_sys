@@ -31,7 +31,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::paginate(10);
+        $appointments = Appointment::orderBy('id','asc')->paginate(10);
         return view('appointment.index',compact('appointments'));
     }
 
@@ -134,5 +134,10 @@ class AppointmentController extends Controller
                 'message' => trans('app.error_again')
             ]);
         }
+    }
+
+    public function search()
+    {
+        return view('appointment.search');
     }
 }

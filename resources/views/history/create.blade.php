@@ -32,7 +32,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="observations">Observaciones</label>
           <div class="col-sm-10">
-          <input type="text" name="observations" class="form-control" placeholder="Observaciones">
+          {!! Form::text('observations', old('observations'),['class'=> 'form-control', 'planceholder' => 'Observaciones']) !!}
           </div>
         </div>
       </div>

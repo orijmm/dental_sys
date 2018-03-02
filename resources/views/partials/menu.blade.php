@@ -30,12 +30,13 @@
       </a>
     </li>
     <li>
-      <a class="submenu {{ Request::is('specialty*') || Request::is('numconsult*') ? 'active' : ''  }}" href="#" title="Miselaneos" data-id="miselaneos-sub">
+      <a class="submenu {{ Request::is('specialty*') || Request::is('numconsult*') || Request::is('patient*') ? 'active' : ''  }}" href="#" title="Miselaneos" data-id="miselaneos-sub">
       <i class="fa fa-list"></i><span> Miselaneos</span>
       </a>
       <ul id="miselaneos-sub" class="accordion">
-        <li><a href="{{ route('specialty.index') }}" class="{{ Request::is('specialty*') ? 'active' : ''  }}" ><i class="fa fa-user"></i><span>Especialidades</span></a></li>
+        <li><a href="{{ route('specialty.index') }}" class="{{ Request::is('specialty*') ? 'active' : ''  }}" ><i class="fa fa-address-card"></i><span>Especialidades</span></a></li>
         <li><a href="{{ route('numconsult.index') }}" class="{{ Request::is('numconsult*') ? 'active' : ''  }}"><i class="fa fa-check-square"></i><span> N de consultorio </span></a></li>
+        <li><a href="{{route('patient.index')}}" class="{{ Request::is('patient*') ? 'active' : ''  }}"><i class="fa fa-user"></i><span>Pacientes</span></a></li>
       </ul>
     </li>
    @permission(('users.manage'))

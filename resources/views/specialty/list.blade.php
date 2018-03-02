@@ -22,3 +22,6 @@
   @endif
 </tbody>
 </table>
+<div class="ColVis">
+{{ $specialty->links() }}
+</div>

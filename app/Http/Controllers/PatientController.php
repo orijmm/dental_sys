@@ -16,7 +16,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $patient = Patient::paginate(10);
+        $patient = Patient::orderBy('id','asc')->paginate(10);
         if ( $request->ajax() ) {
             if (count($patient)) {
                 return response()->json([

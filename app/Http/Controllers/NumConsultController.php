@@ -15,7 +15,7 @@ class NumConsultController extends Controller
      */
     public function index(Request $request)
     {
-        $numconsult = NumConsult::paginate(10);
+        $numconsult = NumConsult::orderBy('id','asc')->paginate(10);
         if ( $request->ajax() ) {
             if (count($numconsult)) {
                 return response()->json([

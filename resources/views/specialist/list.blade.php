@@ -34,3 +34,6 @@
   @endif
 </tbody>
 </table>
+<div class="ColVis">
+{{ $specialist->links() }}
+</div>

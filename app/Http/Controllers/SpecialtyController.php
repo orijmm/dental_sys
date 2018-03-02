@@ -16,7 +16,7 @@ class SpecialtyController extends Controller
      */
     public function index(Request $request)
     {
-        $specialty = Specialty::paginate(10);
+        $specialty = Specialty::orderBy('id','asc')->paginate(10);
         if ( $request->ajax() ) {
             if (count($specialty)) {
                 return response()->json([

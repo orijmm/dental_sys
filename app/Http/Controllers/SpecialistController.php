@@ -17,7 +17,7 @@ class SpecialistController extends Controller
      */
     public function index(Request $request)
     {
-        $specialist = Specialist::paginate(10);
+        $specialist = Specialist::orderBy('id','asc')->paginate(10);
         if ( $request->ajax() ) {
             if (count($specialist)) {
                 return response()->json([

@@ -16,3 +16,6 @@
     @endif
   </tbody>
 </table>
+<div class="ColVis">
+{{ $appointments->links() }}
+</div>

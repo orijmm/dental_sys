@@ -30,3 +30,6 @@
   @endif
 </tbody>
 </table>
+<div class="ColVis">
+{{ $patient->links() }}
+</div>

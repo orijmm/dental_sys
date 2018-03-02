@@ -15,7 +15,7 @@
          @include('appointment.list')
       </div>
       <div class="panel-footer">
-        <a  href="#" class="btn btn-primary"><i class="fa fa-calendar fa-2x"></i></a>
+        <a  href="{{route('appointment.calendar')}}" class="btn btn-primary"><i class="fa fa-calendar fa-2x"></i></a>
         <a  href="{{route('appointment.create')}}" class="btn btn-info">Nueva Cita</a>
         <a  href="{{route('numconsult.index')}}" class="btn btn-warning pull-right"><i class="fa fa-list"></i> Listado de consultorios</a>
       </div>

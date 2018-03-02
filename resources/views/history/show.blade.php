@@ -23,32 +23,33 @@
         <div class="well">
           <div class="row">
             <div class="col-md-8">
-            <div class="row">
-              <div id="odonto_1" class="col-md-6 text-right">
+              <div id="content-table">
+                <div class="row">
+                  <div id="odonto_1" class="col-md-6 text-right">
+                  </div>
+                  <div id="odonto_2" class="col-md-6">
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="odonto_3" class="col-md-6  text-right">
+                  </div>
+                  <div id="odonto_4" class="col-md-6">
+                  </div>
+                </div> 
+                <div style="border-bottom: 1px solid #000; margin:20px;"></div>
+                <div class="row">
+                  <div id="odonto_5" class="col-md-6 text-right">
+                  </div>
+                  <div id="odonto_6" class="col-md-6">
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="odonto_7" class="col-md-6 text-right">
+                  </div>
+                  <div id="odonto_8" class="col-md-6">
+                  </div>
+                </div>
               </div>
-              <div id="odonto_2" class="col-md-6">
-              </div>
-            </div>
-            <div class="row">
-              <div id="odonto_3" class="col-md-6  text-right">
-              </div>
-              <div id="odonto_4" class="col-md-6">
-              </div>
-            </div> 
-            <div style="border-bottom: 1px solid #000; margin:20px;"></div>
-            <div class="row">
-              <div id="odonto_5" class="col-md-6 text-right">
-              </div>
-              <div id="odonto_6" class="col-md-6">
-              </div>
-            </div>
-            <div class="row">
-              <div id="odonto_7" class="col-md-6 text-right">
-              </div>
-              <div id="odonto_8" class="col-md-6">
-              </div>
-            </div>
-  
             </div>
             <div class="col-md-4">
               <h4>Simbolos/Caracteristica</h4>
@@ -73,6 +74,7 @@
         </blockquote>     
       </div>
       <div class="panel-footer">
+        <a href="{{route('history.edit',$history->id)}}" class="btn btn-warning">Editar historial</a>
         <a href="{{route('history.index')}}" class="btn btn-success">Historiales</a>
       </div>
     </div>

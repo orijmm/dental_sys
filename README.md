@@ -1,6 +1,6 @@
 # dental_sys
 ## Requerimientos/ Requirements
-PHP> = 5.5.9 (incluyendo PHP 7) o HHVM OpenSSL PHP Extensión DOP PHP Extensión Mbstring PHP Extensión Tokenizer PHP Extensión GD PHP Extensión Fileinfo PHP Extensión Xdebug Nivel máximo de anidamiento (> = 500).
+PHP> = 5.5.9 (or PHP 7) 
 
 ### composer install
 

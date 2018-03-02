@@ -27,7 +27,9 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('#table-2').DataTable(); 
+    $('#table-2').DataTable({
+        "paging": false,
+    }); 
 });
 
 // plugin
@@ -312,6 +314,7 @@ $(document).on('click', '.btn-submit', function (e) {
     showLoading();
     var form = $('#form-modal'); 
     var type = $('#form-modal input[name="_method"]').val();
+    var odonto = $(this).data('odonto');
     if(typeof type == "undefined") {
         type = form.attr('method');
     }
@@ -339,7 +342,11 @@ $(document).on('click', '.btn-submit', function (e) {
                 }
                 notify('success', response.message);
                 form.get(0).reset();
-                getPages(CURRENT_URL);
+                if (odonto == 'modal') {
+                $('#content-table').hide().html(response.view).fadeIn(1500);
+                } else {
+                    getPages(CURRENT_URL);
+                }
             } else {
                 if(response.validator) {
                   var message = '';
@@ -487,13 +494,14 @@ function getPages(page) {
             hideLoading();
             if(response.success){
                 $('#content-table').html(response.view);
+                console.log(response.view);
                 loadResposiveTable();
                 CURRENT_URL = page;
             }
         },
         error: function (status) {
             hideLoading();
-            console.log(status.statusText);
+            console.log('status.statusText');
         }
     });
 }
@@ -575,28 +583,28 @@ function getBackground(allC)
     case 0:
     image = 'back_odo.jpg'; 
     break;
-    case 1:
+    case 4:
     image = 'sellante.jpg'; 
     break;
-    case 2:
+    case 5:
     image = 'sellante_in.jpg'; 
     break;
-    case 3:
+    case 6:
     image = 'extra_in.jpg';
     break;
-    case 4:
+    case 7:
     image = 'con_endo.jpg';
     break;
-    case 5:
+    case 8:
     image =  'protesis.jpg';
     break;
-    case 6:
+    case 9:
     image =  'necro_pul.jpg';
     break;
-    case 7:
+    case 10:
     image =  'protesi_in.jpg';
     break;
-    case 8:
+    case 11:
     image =  'clini_au.jpg';
     break;
   }
@@ -643,7 +651,6 @@ function getColorC(cColor)
 
 function addDiv(datarray,loop)
 {   
-  
   var urlteeth = $('#urlteeth').val();
   //loop throught all teeth
   for (var i = 0; i < datarray.length; i++) {
@@ -661,7 +668,7 @@ function addDiv(datarray,loop)
     odonto_inner.attr('id','circle_odonto_inner_'+datarray[i].id);
 
     if (datarray[i].all_c === 0) {
-       odonto_back.css({'background-image': 'url(../public/assets/images/back_odo.jpg)','width':'32px','height': '32px', '-moz-border-radius': '32px','-webkit-border-radius': '32px','border-radius': '32px','background-size':'contain','display':'inline-block'});
+       odonto_back.css({'cursor': 'pointer','background-image': 'url(../public/assets/images/back_odo.jpg)','width':'32px','height': '32px', '-moz-border-radius': '32px','-webkit-border-radius': '32px','border-radius': '32px','background-size':'contain','display':'inline-block'});
        odonto_outer.css({'width':'0','height':'0','border-right': getColorOdo(datarray[i].c2),'border-top': getColorOdo(datarray[i].c1),'border-left': getColorOdo(datarray[i].c4),'border-bottom': getColorOdo(datarray[i].c3),'-moz-border-radius': '50%','-webkit-border-radius': '50%','border-radius': '50%'});
        odonto_inner.css({'width': '16px','height': '16px','background': getColorC(datarray[i].c5),'-moz-border-radius': '50%','-webkit-border-radius': '50%', 'border-radius': '50%', 'top': '50%','left': '50%','margin': '-08px 0px 0px -08px', 'border': '1px solid #000'});
     } else {
@@ -673,3 +680,23 @@ function addDiv(datarray,loop)
     $('#circle_odonto_outer_'+datarray[i].id).append(odonto_inner);
   }
 }
+
+$(document).on('click','.odonto_teeth',function(){
+    var odoc = $(this).data('odoc');
+    $('.odonto_teeth').removeClass('active');
+    $(this).addClass('active');
+    $('#inputone').val(odoc);
+});
+
+$(document).on('change','#elect_odonto',function(){
+    var selec_odonto = parseInt($(this).val());
+    var gball = $('.gb_all');
+    if (selec_odonto > 3) {
+        $('.table_odonto').hide();
+        gball.show();
+        gball.css({'background-repeat': 'no-repeat','width':'80px','height':'80px','background-image':'url(../public/assets/images/'+getBackground(selec_odonto)+')'});
+    } else {
+        $('.table_odonto').show();
+        gball.hide();
+    }
+});
