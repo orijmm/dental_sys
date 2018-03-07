@@ -26,6 +26,7 @@
       </div>
       <div class="panel-footer">
       <a href="{{route('appointment.edit', $appointment->id)}}"><button class="btn btn-warning"><i class="fa fa-pencil"></i> Editar Cita</button></a>
+      @permission(('citas.borrar'))
       <a type="button" data-href="{{route('appointment.destroy',$appointment->id)}}" 
                   class="btn btn-round btn-danger btn-delete" 
                   data-confirm-text="Estas seguro de borrar?"
@@ -33,6 +34,7 @@
                   title="Borrar" data-toggle="tooltip" data-placement="top">
                     <i class="fa fa-trash-o"></i> Eliminar cita
                 </a>
+      @endpermission
         <a href="{{route('appointment.index')}}" class="btn btn-success">Listado de citas</a>
       </div>
     </div>

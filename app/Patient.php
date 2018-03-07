@@ -59,4 +59,9 @@ class Patient extends Model
     {
         return $this->hasOne('App\History', 'patient_id');
     }
+
+    public function sales()
+    {
+        return $this->hasMany('App\Sale', 'patient_id');
+    }
 }

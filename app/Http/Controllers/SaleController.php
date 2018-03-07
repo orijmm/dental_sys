@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Specialty;
-use App\Http\Requests\SaveSpecialty;
-use App\Http\Requests\UpdateSpecialty;
+use App\Sale;
+use App\Http\Requests\SaveSale;
+use App\Http\Requests\UpdateSale;
+use App\Patient;
+use App\Specialist;
+use App\Service;
 
-class SpecialtyController extends Controller
+class SaleController extends Controller
 {
     public function __construct()
     {
@@ -24,12 +27,12 @@ class SpecialtyController extends Controller
      */
     public function index(Request $request)
     {
-        $specialty = Specialty::orderBy('id','asc')->paginate(10);
+        $sale = Sale::orderBy('id','asc')->paginate(10);
         if ( $request->ajax() ) {
-            if (count($specialty)) {
+            if (count($sale)) {
                 return response()->json([
                     'success' => true,
-                    'view'    => view('specialty.list', compact('specialty'))->render(),
+                    'view'    => view('sale.list', compact('sale'))->render(),
                 ]);
             } else {
                 return response()->json([
@@ -38,7 +41,7 @@ class SpecialtyController extends Controller
                 ]);
             }
         }
-        return view('specialty.index', compact('specialty'));
+        return view('sale.index', compact('sale'));
     }
 
     /**
@@ -49,7 +52,10 @@ class SpecialtyController extends Controller
     public function create()
     {
         $edit = false;
-        return view('specialty.create', compact('edit'));
+        $patients = Patient::all()->pluck('full_name2', 'id');
+        $specialists = Specialist::all()->pluck( 'full_name','id');
+        $services = Service::all()->pluck( 'name','id');
+        return view('sale.create', compact('edit','patients','specialists', 'services'));
     }
 
     /**
@@ -58,15 +64,28 @@ class SpecialtyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveSpecialty $request)
+    public function store(Request $request)
     {
-        $specialty = Specialty::create($request->all());
-        if ( $specialty ) {
-                return redirect()->route('specialty.index', compact('specialty'))->withSuccess('Especialidad creada con exito');
+        $sale = Sale::create($request->all());
+        if ( $sale ) {
+            $setservice = $sale->setService($sale->id,$request->service_id);
+            
+            return redirect()->route('sale.index', compact('sale'))->withSuccess('Venta creada con exito');
                 
         } else {    
             return back()->withErrors($messages);   
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        
     }
 
     /**
@@ -78,8 +97,8 @@ class SpecialtyController extends Controller
     public function edit($id)
     {
         $edit = true;
-        $specialty = Specialty::find($id);
-        return view('specialty.create', compact('edit', 'specialty'));
+        $sale = Sale::find($id);
+        return view('sale.create', compact('edit', 'sale'));
     }
 
     /**
@@ -89,11 +108,12 @@ class SpecialtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSpecialty $request, $id)
+    public function update(Request $request, $id)
     {
-        $specialty = Specialty::find($id)->update($request->all());
-        if ( $specialty ) {
-                return redirect()->route('specialty.index', compact('specialty'))->withSuccess('Especialidad actualizada con exito');
+        
+        $sale = Sale::find($id)->update($request->all());
+        if ( $sale ) {
+                return redirect()->route('sale.index', compact('sale'))->withSuccess('Venta actualizada con exito');
                 
         } else {    
             return back()->withErrors($messages);   
@@ -108,18 +128,27 @@ class SpecialtyController extends Controller
      */
     public function destroy($id)
     {
-        $deletespecialty = Specialty::find($id);
-        if ( $deletespecialty->delete() ) {
+         $deletesale = Sale::find($id);
+        if ( $deletesale->delete() ) {
             
             return response()->json([
                 'success' => true,
-                'message' => 'Especialidad eliminada',
+                'message' => 'Venta eliminada',
             ]);
         } else {
             return response()->json([
                 'success'=> false,
-                'message' => 'No puede ser borrada o ya esta en uso'
+                'message' => trans('app.error_again')
             ]);
         }
+    }
+
+    public function getServices()
+    {
+        $services = Service::all();
+        return response()->json([
+            'success' => true,
+            'services' => $services
+            ]);
     }
 }

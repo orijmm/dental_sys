@@ -47,4 +47,9 @@ class Specialist extends Model
     {
         return $this->hasMany('App\History', 'specialist_id');
     }
+
+    public function sales()
+    {
+        return $this->hasMany('App\Sale', 'patient_id');
+    }
 }

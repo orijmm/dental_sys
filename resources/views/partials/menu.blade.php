@@ -9,19 +9,31 @@
         <i class="fa fa-home"></i><span> @lang('app.home')</span>
       </a>
     </li>
+    @permission(('citas.general'))
     <li>
       <a class="menu" href="{{ route('appointment.index') }}" title="@lang('app.appointment')">
       <i class="fa fa-align-justify"></i><span> Citas Medicas</span>
       </a>
     </li>
+    @endpermission
+    @permission(('historias.general'))
     <li>
       <a class="menu" href="{{ route('history.index') }}" title="@lang('app.history')">
       <i class="fa fa-h-square"></i><span> Historias Dentales</span>
       </a>
     </li>
+    @endpermission
+    @permission(('especialistas.general'))
     <li>
       <a class="menu" href="{{ route('specialist.index') }}" title="@lang('app.users')">
       <i class="fa fa-user-md"></i><span> Especialistas</span>
+      </a>
+    </li>
+    @endpermission
+    @permission(('acceso.full.editar'))
+    <li>
+      <a class="menu" href="{{ route('sale.index') }}" title="@lang('app.users')">
+      <i class="fa fa-line-chart"></i><span> Ventas</span>
       </a>
     </li>
     <li>
@@ -30,15 +42,17 @@
       </a>
     </li>
     <li>
-      <a class="submenu {{ Request::is('specialty*') || Request::is('numconsult*') || Request::is('patient*') ? 'active' : ''  }}" href="#" title="Miselaneos" data-id="miselaneos-sub">
+      <a class="submenu {{ Request::is('specialty*') || Request::is('numconsult*') || Request::is('patient*') || Request::is('service*') ? 'active' : ''  }}" href="#" title="Miselaneos" data-id="miselaneos-sub">
       <i class="fa fa-list"></i><span> Miselaneos</span>
       </a>
       <ul id="miselaneos-sub" class="accordion">
         <li><a href="{{ route('specialty.index') }}" class="{{ Request::is('specialty*') ? 'active' : ''  }}" ><i class="fa fa-address-card"></i><span>Especialidades</span></a></li>
         <li><a href="{{ route('numconsult.index') }}" class="{{ Request::is('numconsult*') ? 'active' : ''  }}"><i class="fa fa-check-square"></i><span> N de consultorio </span></a></li>
         <li><a href="{{route('patient.index')}}" class="{{ Request::is('patient*') ? 'active' : ''  }}"><i class="fa fa-user"></i><span>Pacientes</span></a></li>
+        <li><a href="{{route('service.index')}}" class="{{ Request::is('service*') ? 'active' : ''  }}"><i class="fa fa-user"></i><span>Servicios</span></a></li>
       </ul>
     </li>
+   @endpermission
    @permission(('users.manage'))
     <li>
       <a class="menu {{ Request::is('user*') ? 'active' : ''  }}" href="{{ route('user.index') }}" title="@lang('app.users')">

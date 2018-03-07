@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Specialty;
-use App\Http\Requests\SaveSpecialty;
-use App\Http\Requests\UpdateSpecialty;
+use App\Service;
+use App\Http\Requests\SaveService;
+use App\Http\Requests\UpdateService;
 
-class SpecialtyController extends Controller
+class ServiceController extends Controller
 {
     public function __construct()
     {
@@ -24,12 +24,12 @@ class SpecialtyController extends Controller
      */
     public function index(Request $request)
     {
-        $specialty = Specialty::orderBy('id','asc')->paginate(10);
+        $service = Service::orderBy('id','asc')->paginate(10);
         if ( $request->ajax() ) {
-            if (count($specialty)) {
+            if (count($service)) {
                 return response()->json([
                     'success' => true,
-                    'view'    => view('specialty.list', compact('specialty'))->render(),
+                    'view'    => view('service.list', compact('service'))->render(),
                 ]);
             } else {
                 return response()->json([
@@ -38,7 +38,7 @@ class SpecialtyController extends Controller
                 ]);
             }
         }
-        return view('specialty.index', compact('specialty'));
+        return view('service.index', compact('service'));
     }
 
     /**
@@ -49,7 +49,7 @@ class SpecialtyController extends Controller
     public function create()
     {
         $edit = false;
-        return view('specialty.create', compact('edit'));
+        return view('service.create', compact('edit'));
     }
 
     /**
@@ -58,15 +58,26 @@ class SpecialtyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveSpecialty $request)
+    public function store(Request $request)
     {
-        $specialty = Specialty::create($request->all());
-        if ( $specialty ) {
-                return redirect()->route('specialty.index', compact('specialty'))->withSuccess('Especialidad creada con exito');
+        $service = Service::create($request->all());
+        if ( $service ) {
+                return redirect()->route('service.index', compact('service'))->withSuccess('Servicio creada con exito');
                 
         } else {    
             return back()->withErrors($messages);   
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        
     }
 
     /**
@@ -78,8 +89,8 @@ class SpecialtyController extends Controller
     public function edit($id)
     {
         $edit = true;
-        $specialty = Specialty::find($id);
-        return view('specialty.create', compact('edit', 'specialty'));
+        $service = Service::find($id);
+        return view('service.create', compact('edit', 'service'));
     }
 
     /**
@@ -89,11 +100,11 @@ class SpecialtyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSpecialty $request, $id)
+    public function update(Request $request, $id)
     {
-        $specialty = Specialty::find($id)->update($request->all());
-        if ( $specialty ) {
-                return redirect()->route('specialty.index', compact('specialty'))->withSuccess('Especialidad actualizada con exito');
+        $service = Service::find($id)->update($request->all());
+        if ( $service ) {
+                return redirect()->route('service.index', compact('service'))->withSuccess('Servicio actualizada con exito');
                 
         } else {    
             return back()->withErrors($messages);   
@@ -108,17 +119,17 @@ class SpecialtyController extends Controller
      */
     public function destroy($id)
     {
-        $deletespecialty = Specialty::find($id);
-        if ( $deletespecialty->delete() ) {
+         $deleteservice = Service::find($id);
+        if ( $deleteservice->delete() ) {
             
             return response()->json([
                 'success' => true,
-                'message' => 'Especialidad eliminada',
+                'message' => 'Servicio eliminada',
             ]);
         } else {
             return response()->json([
                 'success'=> false,
-                'message' => 'No puede ser borrada o ya esta en uso'
+                'message' => trans('app.error_again')
             ]);
         }
     }

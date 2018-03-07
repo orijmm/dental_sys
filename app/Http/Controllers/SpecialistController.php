@@ -10,6 +10,14 @@ use App\Http\Requests\SpecialistUpdate;
 
 class SpecialistController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('locale'); 
+        $this->middleware('timezone'); 
+        $this->middleware('permission:especialistas.general');
+        $this->middleware('session.database', ['only' => ['sessions', 'invalidateSession']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -125,7 +133,7 @@ class SpecialistController extends Controller
         } else {
             return response()->json([
                 'success'=> false,
-                'message' => trans('app.error_again')
+                'message' => 'No puede ser borrada o ya esta en uso'
             ]);
         }
     }

@@ -50,6 +50,54 @@ class PermissionsSeeder extends Seeder
             'removable' => false
         ]);
 
+        $permissions[] = Permission::create([
+            'name' => 'citas.general',
+            'display_name' => 'Acceso a citas',
+            'description' => '',
+            'removable' => false
+        ]);
+        $permissions[] = Permission::create([
+            'name' => 'citas.borrar',
+            'display_name' => 'Borrar a citas',
+            'description' => '',
+            'removable' => false
+        ]);
+
+        $permissions[] = Permission::create([
+            'name' => 'historias.general',
+            'display_name' => 'Historias General',
+            'description' => '',
+            'removable' => false
+        ]);
+
+        $permissions[] = Permission::create([
+            'name' => 'historias.editar',
+            'display_name' => 'Historias editar',
+            'description' => '',
+            'removable' => false
+        ]);
+
+        $permissions[] = Permission::create([
+            'name' => 'especialistas.general',
+            'display_name' => 'especialistas General',
+            'description' => '',
+            'removable' => false
+        ]);
+
+        $permissions[] = Permission::create([
+            'name' => 'especialistas.editar',
+            'display_name' => 'especialistas editar',
+            'description' => '',
+            'removable' => false
+        ]);
+
+        $permissions[] = Permission::create([
+            'name' => 'acceso.full.editar',
+            'display_name' => 'Acceso a todos los modulos',
+            'description' => '',
+            'removable' => false
+        ]);
+
         $adminRole->attachPermissions($permissions);
     }
 }

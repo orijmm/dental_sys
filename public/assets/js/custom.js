@@ -395,12 +395,12 @@ $(document).on('click', '.search', function () {
         $.ajax({
             url: CURRENT_URL,
             type:"GET",
-            data:{ search: term, opcion : opcion },
+            data:{ search: term},
             dataType: 'json',
             success: function(response) {
                 hideLoading();
                 if(response.success){
-                    $('#content-table').html(response.view);
+                        $('#content-table').html(response.view);
                     loadResposiveTable();
                 } else {
                     notify('error', response.message);
@@ -413,7 +413,8 @@ $(document).on('click', '.search', function () {
             }
         });
     } else {
-        //
+        hideLoading();
+        notify('error', 'Ingrese un termino para la busqueda');
     }
 });
 

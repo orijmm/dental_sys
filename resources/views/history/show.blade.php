@@ -74,7 +74,9 @@
         </blockquote>     
       </div>
       <div class="panel-footer">
+        @permission(('historias.editar'))
         <a href="{{route('history.edit',$history->id)}}" class="btn btn-warning">Editar historial</a>
+        @endpermission
         <a href="{{route('history.index')}}" class="btn btn-success">Historiales</a>
       </div>
     </div>

@@ -8,6 +8,14 @@ use App\Http\Requests\NumConsultorio;
 
 class NumConsultController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('locale'); 
+        $this->middleware('timezone'); 
+        $this->middleware('permission:acceso.full.editar');
+        $this->middleware('session.database', ['only' => ['sessions', 'invalidateSession']]);
+    }
     /**
      * Display a listing of the resource.
      *

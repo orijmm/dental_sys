@@ -14,6 +14,14 @@ use App\Http\Requests\HistoryUpdate;
 
 class HistoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('locale'); 
+        $this->middleware('timezone'); 
+        $this->middleware('permission:historias.general');
+        $this->middleware('session.database', ['only' => ['sessions', 'invalidateSession']]);
+    }
     /**
      * Display a listing of the resource.
      *

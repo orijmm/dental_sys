@@ -8,6 +8,7 @@ use App\Patient;
 use App\Specialist;
 use App\Numconsult;
 use App\Http\Requests\AppointmentCreate;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -21,6 +22,7 @@ class AppointmentController extends Controller
         $this->middleware('auth');
         $this->middleware('locale'); 
         $this->middleware('timezone'); 
+        $this->middleware('permission:citas.general');
         $this->middleware('session.database', ['only' => ['sessions', 'invalidateSession']]);
         $this->appointment = $appointment;
     }
@@ -136,8 +138,25 @@ class AppointmentController extends Controller
         }
     }
 
-    public function search()
+    public function search(Request $request)
     {
+
+        if ( $request->ajax() ) {
+            $datetime = $request->search;
+            $appointments = Appointment::whereBetween('datetime',[Carbon::parse($datetime)->startOfDay(),Carbon::parse($datetime)->endOfDay()])->paginate(10);
+            if (count($appointments)) {
+                return response()->json([
+                    'success' => true,
+                    'view'    => view('appointment.list', compact('appointments'))->render()
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => trans('app.no_records_found')
+                ]);
+            }
+        }
+
         return view('appointment.search');
     }
 }

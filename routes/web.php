@@ -102,13 +102,8 @@
     */
     Route::resource('appointment', 'AppointmentController');
     Route::resource('history', 'HistoryController');
-    Route::resource('numconsult', 'NumConsultController', ['except' => ['edit', 'update','show']]);
     Route::resource('odontogram', 'OdontogramController');
-    Route::resource('patient', 'PatientController');
     Route::resource('specialist', 'SpecialistController');
-    Route::resource('specialty', 'SpecialtyController');
-    Route::resource('teeth', 'TeethController');
-
     Route::get('history/odonto/teeths/{id}','HistoryController@getTeeth')
     ->name('data.teeths');
     Route::get('history/edit/teeths/{id}','HistoryController@editTeeth')
@@ -119,4 +114,18 @@
     Route::get('appointment/search/calendar','AppointmentController@search')
     ->name('appointment.calendar');
 
-    Route::post('appointment/post/calendar','AppointmentController@search')->name('appointment.search.post');
+    Route::get('appointment/get/calendar','AppointmentController@getSearch')->name('appointment.search.get');
+    
+
+    Route::resource('numconsult', 'NumConsultController', ['except' => ['edit', 'update','show']]);
+    Route::resource('patient', 'PatientController');
+    
+    Route::resource('specialty', 'SpecialtyController');
+    Route::resource('teeth', 'TeethController');
+    Route::resource('service', 'ServiceController');
+    Route::resource('sale', 'SaleController');
+
+    Route::get('sale/datos/service','SaleController@getServices')
+    ->name('datos.services');
+
+    
