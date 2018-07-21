@@ -16,8 +16,6 @@ sdsdsd
 
 ### php artisan migrate --seed
 
-### admin user:
-
 user: admin
 pass: secret
 
