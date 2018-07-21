@@ -11,7 +11,7 @@ PHP> = 5.5.9 (or PHP 7)
 ### npm install
 
 ### gulp
-sdsdsd
+
 ### Config database env
 
 ### php artisan migrate --seed
