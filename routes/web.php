@@ -109,7 +109,7 @@
     Route::get('history/edit/teeths/{id}','HistoryController@editTeeth')
     ->name('edit.teeth');
     Route::put('history/update/teeths/{id}','HistoryController@updateTeeth')
-    ->name('teeth.update');
+    ->name('teeth.put.update');
 
     Route::get('appointment/search/calendar','AppointmentController@search')
     ->name('appointment.calendar');

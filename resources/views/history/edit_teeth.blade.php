@@ -1,23 +1,10 @@
+{!! Form::model($teeth, ['route' => ['teeth.put.update', $teeth->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'form-modal']) !!}
 <div class="modal-body">
-{!! Form::model($teeth, ['route' => ['teeth.update', $teeth->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'form-modal']) !!}
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-4">
       Seleccione:
-    <select class="form-control" id="elect_odonto" name="elect_odonto">
-      <option value="0" selected="selected">Seleccione</option>
-      <option value="1">Caries</option>
-      <option value="2">Recina</option>
-      <option value="3">Amalgama</option>
-      <option value="4">Sellante</option>
-      <option value="5">Sellante Indicado</option>
-      <option value="6">Extranción Indicada</option>
-      <option value="7">Con edodoncia</option>
-      <option value="8">Protesis</option>
-      <option value="9">Necrosís pulpar</option>
-      <option value="10">Protesís indicada</option>
-      <option value="11">Clinicamente ausenta</option>
-    </select>
+    {!!Form::select('elect_odonto', ['Selecione','Caries','Recina', 'Amalgama', 'Sellante', 'Sellante Indicado', 'Extranción Indicada', 'Con edodoncia', 'Protesis', 'Necrosís pulpar','Protesís indicada','Clinicamente ausente'],null, ['placeholder' => 'Seleccione', 'class' => 'form-control', 'id' => 'elect_odonto'])!!}
   </div>
   <div class="col-md-4">
     <div class="gb_all"></div>

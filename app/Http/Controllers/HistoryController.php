@@ -11,6 +11,7 @@ use App\Specialist;
 use DB;
 use App\Http\Requests\HistorialCreate;
 use App\Http\Requests\HistoryUpdate;
+use App\Http\Requests\OdontoUpdate;
 
 class HistoryController extends Controller
 {
@@ -189,48 +190,56 @@ class HistoryController extends Controller
         } 
     }
 
-    public function updateTeeth(Request $request,$id)
+    public function updateTeeth(OdontoUpdate $request,$id)
     {
-        $teeth = Teeth::find($id);
-        $history = History::where('odontogram_id',$teeth->odontogram_id)->first();
-        if ($request->elect_odonto > 3) {
-            $request['all_c'] = $request->elect_odonto;
-        }else{
-            switch ($request->inputone) {
-            case '1':
-                $request['c1'] = $request->elect_odonto;
-                $request['all_c'] = 0;
-                break;
-            case '2':
-                $request['c2'] = $request->elect_odonto;
-                $request['all_c'] = 0;
-                break;
-            case '3':
-                $request['c3'] = $request->elect_odonto;
-                $request['all_c'] = 0;
-                break;
-            case '4':
-                $request['c4'] = $request->elect_odonto;
-                $request['all_c'] = 0;
-                break;
-            case '5':
-                $request['c5'] = $request->elect_odonto;
-                $request['all_c'] = 0;
-                break;
+        if (!$request->elect_odonto) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Debe llenar los datos'
+                ]);
+        } else {
+            $teeth = Teeth::find($id);
+            $history = History::where('odontogram_id',$teeth->odontogram_id)->first();
+            if ($request->elect_odonto > 3) {
+                $request['all_c'] = $request->elect_odonto;
+            }else{
+                switch ($request->inputone) {
+                case '1':
+                    $request['c1'] = $request->elect_odonto;
+                    $request['all_c'] = 0;
+                    break;
+                case '2':
+                    $request['c2'] = $request->elect_odonto;
+                    $request['all_c'] = 0;
+                    break;
+                case '3':
+                    $request['c3'] = $request->elect_odonto;
+                    $request['all_c'] = 0;
+                    break;
+                case '4':
+                    $request['c4'] = $request->elect_odonto;
+                    $request['all_c'] = 0;
+                    break;
+                case '5':
+                    $request['c5'] = $request->elect_odonto;
+                    $request['all_c'] = 0;
+                    break;
+                }
+            }
+            if ( $teeth->update( $request->all() ) ) {
+                return response()->json([
+                'success' => true,
+                'message' => 'Odontograma Actualizado',
+                'view'    => view('history.odontogram', compact('history'))->render()
+                ]);
+            } else {
+                return response()->json([
+                'success' => false,
+                'message' => 'Ocurrio un error al actualizar'
+                ]);
             }
         }
-        if ( $teeth->update( $request->all() ) ) {
-            return response()->json([
-            'success' => true,
-            'message' => 'Odontograma Actualizado',
-            'view'    => view('history.odontogram', compact('history'))->render()
-            ]);
-        } else {
-            return response()->json([
-            'success' => false,
-            'view' => 'error'
-            ]);
-        }
+        
         
     }
 }
