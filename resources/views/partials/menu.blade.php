@@ -11,33 +11,33 @@
     </li>
     @permission(('citas.general'))
     <li>
-      <a class="menu" href="{{ route('appointment.index') }}" title="@lang('app.appointment')">
+      <a class="menu {{ Request::is('appointment*') ? 'active' : ''  }}" href="{{ route('appointment.index') }}" title="@lang('app.appointment')">
       <i class="fa fa-align-justify"></i><span> Citas Medicas</span>
       </a>
     </li>
     @endpermission
     @permission(('historias.general'))
     <li>
-      <a class="menu" href="{{ route('history.index') }}" title="@lang('app.history')">
+      <a class="menu {{ Request::is('history*') ? 'active' : ''  }}" href="{{ route('history.index') }}" title="@lang('app.history')">
       <i class="fa fa-h-square"></i><span> Historias Dentales</span>
       </a>
     </li>
     @endpermission
     @permission(('especialistas.general'))
     <li>
-      <a class="menu" href="{{ route('specialist.index') }}" title="@lang('app.users')">
+      <a class="menu {{ Request::is('specialist*') ? 'active' : ''  }}" href="{{ route('specialist.index') }}" title="@lang('app.users')">
       <i class="fa fa-user-md"></i><span> Especialistas</span>
       </a>
     </li>
     @endpermission
     @permission(('acceso.full.editar'))
     <li>
-      <a class="menu" href="{{ route('sale.index') }}" title="@lang('app.users')">
+      <a class="menu {{ Request::is('sale*') ? 'active' : ''  }}" href="{{ route('sale.index') }}" title="@lang('app.users')">
       <i class="fa fa-line-chart"></i><span> Ventas</span>
       </a>
     </li>
     <li>
-      <a class="menu" href="{{ route('user.index') }}" title="@lang('app.users')">
+      <a class="menu {{ Request::is('user*') ? 'active' : ''  }}" href="{{ route('user.index') }}" title="@lang('app.users')">
       <i class="fa fa-line-chart"></i><span> Reportes</span>
       </a>
     </li>

@@ -192,12 +192,12 @@ class HistoryController extends Controller
 
     public function updateTeeth(OdontoUpdate $request,$id)
     {
-        if (!$request->elect_odonto) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Debe llenar los datos'
-                ]);
-        } else {
+        #if (!$request->elect_odonto) {
+         #   return response()->json([
+          #      'success' => false,
+           #     'message' => 'Debe llenar los datos'
+            #    ]);
+        #} else {
             $teeth = Teeth::find($id);
             $history = History::where('odontogram_id',$teeth->odontogram_id)->first();
             if ($request->elect_odonto > 3) {
@@ -238,7 +238,7 @@ class HistoryController extends Controller
                 'message' => 'Ocurrio un error al actualizar'
                 ]);
             }
-        }
+        #}
         
         
     }
