@@ -26,7 +26,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="dni">Cedula</label>
           <div class="col-sm-10">
-          {!!Form::text('dni',old('dni'), ['class' => 'form-control'])!!} 
+          {!!Form::number('dni',old('dni'), ['class' => 'form-control', ])!!} 
           </div>
         </div>
         <div class="form-group">

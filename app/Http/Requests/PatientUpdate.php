@@ -13,7 +13,7 @@ class PatientUpdate extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class PatientUpdate extends FormRequest
         $id = $this->route('patient');
         return [
             'full_name' => 'required',
-            'dni' => 'required|numeric|unique:patients,dni,'.$id,
+            'dni' => 'required|numeric|digits_between:6,9|unique:patients,dni,'.$id,
             'birthday' => 'required',
         ];
     }

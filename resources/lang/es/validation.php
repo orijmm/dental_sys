@@ -162,6 +162,8 @@ return [
         'datetime'              => 'Fecha de nacimiento',
         'elije'                 => 'Condición',
         'odontogram_id'         => 'Odontograma',
+        'service_id.*'          => 'Servicio',
+        'cost'                  => 'Costo',
     ],
 
 ];

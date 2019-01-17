@@ -10,11 +10,11 @@ PHP> = 5.5.9 (or PHP 7)
 
 ### npm install
 
-### gulp
-
 ### Config database env
 
 ### php artisan migrate --seed
+
+### http://localhost/dental_sys/ (sin public)
 
 # user: admin
 # pass: secret

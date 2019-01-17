@@ -409,7 +409,6 @@ $(document).on('click', '.search', function () {
             error: function (status) {
                 hideLoading();
                 notify('error', status.statusText);
-                console.log('maaaa');
             }
         });
     } else {
@@ -444,7 +443,6 @@ $(document).on('click', '.searchhistory', function () {
             error: function (status) {
                 hideLoading();
                 notify('error', status.statusText);
-                console.log('maaaa');
             }
         });
     } else {
@@ -495,7 +493,6 @@ function getPages(page) {
             hideLoading();
             if(response.success){
                 $('#content-table').html(response.view);
-                console.log(response.view);
                 loadResposiveTable();
                 CURRENT_URL = page;
             }
@@ -700,4 +697,58 @@ $(document).on('change','#elect_odonto',function(){
         $('.table_odonto').show();
         gball.hide();
     }
+});
+
+// changebill
+$(document).on('click', '.change_bill', function () {
+    showLoading();
+    var url = $(this).data('url');
+    var saleid = $(this).data('id');
+    $.ajax({
+        url: url,
+        type:"GET",
+        data:{ id:  saleid},
+        dataType: 'json',
+        success: function(response) {
+            if(response.success){
+                $('#content-table').html(response.view);
+                loadResposiveTable();
+                notify('success', response.message);
+            } else {
+                notify('error', response.message);
+            }
+            hideLoading();
+        },
+        error: function (status) {
+            hideLoading();
+            notify('error', status.statusText);
+        }
+    });
+});
+
+// changecharged
+$(document).on('click', '.change_charged', function () {
+    showLoading();
+    var url = $(this).data('url');
+    var saleid = $(this).data('id');
+    $.ajax({
+        url: url,
+        type:"GET",
+        data:{ id:  saleid},
+        dataType: 'json',
+        success: function(response) {
+            if(response.success){
+                $('#content-table').html(response.view);
+                loadResposiveTable();
+                notify('success', response.message);
+            } else {
+                notify('error', response.message);
+            }
+            hideLoading();
+        },
+        error: function (status) {
+            hideLoading();
+            notify('error', status.statusText);
+        }
+    });
 });

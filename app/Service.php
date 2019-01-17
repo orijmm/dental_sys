@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Sale;
 
 class Service extends Model
 {
@@ -24,8 +25,8 @@ class Service extends Model
     'status'
         ];
 
-    /*public function specialists()
+    public function sales()
     {
-        return $this->hasMany('App\Specialist', 'specialty_id');
-    }*/
+        return $this->belongsToMany('App\Sale','sale_service');
+    }
 }

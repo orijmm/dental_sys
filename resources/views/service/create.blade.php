@@ -26,7 +26,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label" for="name">Costo</label>
           <div class="col-sm-10">
-          {!!Form::text('cost',null, ['class' => 'form-control'])!!} 
+          {!!Form::number('cost',null, ['class' => 'form-control'])!!} 
           </div>
         </div>
         <div  class="form-group">
@@ -38,7 +38,7 @@
       </div>
       <div class="panel-footer">
         <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="{{route('service.index')}}" class="btn btn-info pull-right"><i class="fa fa-list"></i> Listado de especialidades</a>
+        <a href="{{route('service.index')}}" class="btn btn-info pull-right"><i class="fa fa-list"></i> Listado de servicios</a>
       </div>
       {!! Form::close() !!}
     </div>

@@ -13,7 +13,7 @@ class SaveService extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class SaveService extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'cost' => 'required',
+            'status'  => 'required',
         ];
     }
 }

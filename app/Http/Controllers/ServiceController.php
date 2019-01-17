@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Service;
 use App\Http\Requests\SaveService;
 use App\Http\Requests\UpdateService;
+use DB;
 
 class ServiceController extends Controller
 {
@@ -58,7 +59,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveService $request)
     {
         $service = Service::create($request->all());
         if ( $service ) {
@@ -100,7 +101,7 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateService $request, $id)
     {
         $service = Service::find($id)->update($request->all());
         if ( $service ) {
@@ -119,18 +120,31 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-         $deleteservice = Service::find($id);
-        if ( $deleteservice->delete() ) {
+        $deleteservice = Service::find($id);
+        $sales = DB::table('sales')
+            ->join('sale_service', 'sales.id', '=', 'sale_service.sale_id')
+            ->join('services', 'sale_service.service_id', '=', 'services.id')
+            ->where('sale_service.service_id',$id)
+            ->select('sale_service.service_id', 'services.name','sales.id')
+            ->get();
+        if (count($sales) > 0 ) {
+            return response()->json([
+                'success'=> false,
+                'message' => trans('Este Servicio esta asociado a una venta no puedo ser borrado')
+            ]);
+        }else{
+            if ( $deleteservice->delete() ) {
             
             return response()->json([
                 'success' => true,
                 'message' => 'Servicio eliminada',
             ]);
-        } else {
-            return response()->json([
-                'success'=> false,
-                'message' => trans('app.error_again')
-            ]);
+            } else {
+                return response()->json([
+                    'success'=> false,
+                    'message' => trans('app.error_again')
+                ]);
+            }
         }
     }
 }

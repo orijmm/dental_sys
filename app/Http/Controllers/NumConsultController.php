@@ -77,17 +77,25 @@ class NumConsultController extends Controller
     public function destroy($id)
     {
         $deleteconsult = NumConsult::find($id);
-        if ( $deleteconsult->delete() ) {
-            
-            return response()->json([
-                'success' => true,
-                'message' => 'consultorio eliminado',
-            ]);
-        } else {
-            return response()->json([
-                'success'=> false,
-                'message' => trans('app.error_again')
-            ]);
+        
+        try {
+             $deleteconsult->delete();
+
+            } 
+        catch (\Illuminate\Database\QueryException $e) {
+
+                if($e->getCode() == "23000"){ //23000 is sql code for integrity constraint violation
+                    return response()->json([
+                    'success'=> false,
+                    'message' => 'No puede ser borrada o ya esta en uso'
+                    ]);
+                }
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Consultorio eliminado',
+        ]);
+
     }
 }

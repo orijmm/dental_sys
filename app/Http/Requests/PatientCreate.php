@@ -25,7 +25,7 @@ class PatientCreate extends FormRequest
     {
         return [
             'full_name' => 'required',
-            'dni' => 'required|numeric|unique:patients,dni',
+            'dni' => 'required|numeric|digits_between:6,9|unique:patients,dni',
             'birthday' => 'required',
         ];
     }

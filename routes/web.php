@@ -128,4 +128,13 @@
     Route::get('sale/datos/service','SaleController@getServices')
     ->name('datos.services');
 
+    Route::get('sale/change/bill','SaleController@changeBill')
+    ->name('change.bill');
+
+    Route::get('sale/change/charged','SaleController@changeCharge')
+    ->name('change.charged');
+
+    Route::get('ventas/reportes/vista','SaleController@showReporte')
+    ->name('sales.reporte.show');
+
     

@@ -109,17 +109,24 @@ class SpecialtyController extends Controller
     public function destroy($id)
     {
         $deletespecialty = Specialty::find($id);
-        if ( $deletespecialty->delete() ) {
-            
-            return response()->json([
-                'success' => true,
-                'message' => 'Especialidad eliminada',
-            ]);
-        } else {
-            return response()->json([
-                'success'=> false,
-                'message' => 'No puede ser borrada o ya esta en uso'
-            ]);
+        
+        try {
+             $deletespecialty->delete();
+
+            } 
+        catch (\Illuminate\Database\QueryException $e) {
+
+                if($e->getCode() == "23000"){ //23000 is sql code for integrity constraint violation
+                    return response()->json([
+                    'success'=> false,
+                    'message' => 'No puede ser borrada o ya esta en uso'
+                    ]);
+                }
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Especialidad eliminada',
+        ]);
     }
 }

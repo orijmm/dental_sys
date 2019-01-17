@@ -28,7 +28,7 @@ class SpecialistCreate extends FormRequest
             'name' => 'required',
             'last_name'  => 'required',
             'email' => 'required|email',
-            'dni' => 'required|numeric|unique:specialists,dni',
+            'dni' => 'required|numeric|digits_between:6,9|unique:specialists,dni',
             'status' => 'required',
         ];
     }

@@ -32,12 +32,12 @@
     @endpermission
     @permission(('acceso.full.editar'))
     <li>
-      <a class="menu {{ Request::is('sale*') ? 'active' : ''  }}" href="{{ route('sale.index') }}" title="@lang('app.users')">
+      <a class="menu {{ Request::is('sale*')  ? 'active' : ''  }}" href="{{ route('sale.index') }}" title="@lang('app.users')">
       <i class="fa fa-line-chart"></i><span> Ventas</span>
       </a>
     </li>
     <li>
-      <a class="menu {{ Request::is('user*') ? 'active' : ''  }}" href="{{ route('user.index') }}" title="@lang('app.users')">
+      <a class="menu {{ Request::is('ventas/reportes*') ? 'active' : ''  }}" href="{{ route('sales.reporte.show') }}" title="@lang('app.report')">
       <i class="fa fa-line-chart"></i><span> Reportes</span>
       </a>
     </li>

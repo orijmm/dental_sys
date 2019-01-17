@@ -23,8 +23,8 @@ class Sale extends Model
     protected $fillable = [
         'patient_id',
         'specialist_id',
-        'bill',
-        'charged',
+        'bill', //factura
+        'charged', //pagado
         'date'
         ];
 
@@ -50,12 +50,12 @@ class Sale extends Model
      */
     public function setService($saleId, $serviceId)
     {
-        $this->find($saleId)->services()->sync($serviceId);
+        $this->services()->sync($serviceId);
     }
 
     public function services()
     {
-        return $this->belongsToMany(Service::class,'sale_service');
+        return $this->belongsToMany('App\Service','sale_service');
     }
 
     public function patient()

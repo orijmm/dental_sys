@@ -39,12 +39,27 @@
            </div>
         </div>
         <hr>
+        @if($edit)
+        <span class="col-md-2" for="status" style="text-align: right;padding-right: 29px;font-weight: bold">Servicio</span>
+        <span class="col-md-10 " for="status">
+          @foreach($sale->services as $servicio)
+            <div  class="form-group">
+            <label class="col-md-1 control-label" for="status"><button class="btn btn-danger btn-xs pull-right deleteserv"><i class="fa fa-trash"></i></button></label>
+            <div class="col-sm-11">
+            
+             {!!Form::select('service_id[]', $services,$servicio->id, ['placeholder' => 'Selecione','class' => 'form-control'])!!}
+             </div>
+           </div>
+          @endforeach
+        </span>
+        @else
         <div  class="form-group">
           <label class="col-md-2 control-label" for="status">Servicios </label>
           <div class="col-sm-10">
           {!!Form::select('service_id[]', $services,null, ['placeholder' => 'Selecione','class' => 'form-control'])!!}
            </div>
         </div>
+        @endif
         <div id="addserv"></div>
         <div  class="form-group">
           <div class="col-md-2">

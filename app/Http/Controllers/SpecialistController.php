@@ -123,18 +123,25 @@ class SpecialistController extends Controller
      */
     public function destroy($id)
     {
-         $deletespecialist = Specialist::find($id);
-        if ( $deletespecialist->delete() ) {
-            
-            return response()->json([
-                'success' => true,
-                'message' => 'Especialista eliminado',
-            ]);
-        } else {
-            return response()->json([
-                'success'=> false,
-                'message' => 'No puede ser borrada o ya esta en uso'
-            ]);
+        $deletespecialist = Specialist::find($id);
+        try {
+             $deletespecialist->delete();
+
+            } 
+        catch (\Illuminate\Database\QueryException $e) {
+
+                if($e->getCode() == "23000"){ //23000 is sql code for integrity constraint violation
+                    return response()->json([
+                    'success'=> false,
+                    'message' => 'No puede ser borrada o ya esta en uso'
+                    ]);
+                }
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Especialista eliminado',
+        ]);
+        
     }
 }

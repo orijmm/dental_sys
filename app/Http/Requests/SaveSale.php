@@ -6,14 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SaveSale extends FormRequest
 {
-    /**
+   /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class SaveSale extends FormRequest
     public function rules()
     {
         return [
-            //
+        'patient_id' => 'required',
+        'specialist_id' => 'required',
+        'date' => 'required',
+        'service_id.*' => 'required',
         ];
     }
 }

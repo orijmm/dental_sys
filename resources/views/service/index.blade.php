@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="panel-footer">
-        <a  href="{{route('service.create')}}" class="btn btn-info">Nueva Servicios</a>
+        <a  href="{{route('service.create')}}" class="btn btn-info">Nuevo Servicios</a>
       </div>
     </div>
 </div>
