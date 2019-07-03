@@ -19,7 +19,7 @@
         "laravel/scout": "^2.0",
         "pusher/pusher-php-server": "^2.6",
         "laravel/passport": "^1.0",
-        "zizaco/entrust": "^1.7",
+        "zizaco/entrust": "5.2.x-dev",
         "algolia/algoliasearch-client-php": "^1.13",
         "spatie/laravel-activitylog": "^1.10"
     },
