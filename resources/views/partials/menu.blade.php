@@ -67,7 +67,7 @@
         </a>
       </li>
      @endpermission
-    @permission(('roles.manage'))
+    @permission(('roles.manage'))     
       <li>
         <a class="submenu {{ Request::is('role*') || Request::is('permission*') ? 'active' : ''  }}" href="#" title="@lang('app.roles_and_permissions')" data-id="role-permission-sub"><i class="fa fa-lock"></i><span> @lang('app.roles_and_permissions')</span></a>
           <ul id="role-permission-sub" class="accordion">

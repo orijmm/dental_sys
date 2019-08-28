@@ -577,56 +577,53 @@ $(document).on('change', '#selectbasic', function(){
 //odonto
 function getBackground(allC)
 {
-    var imagenn = '';
-    console.log('allc'+allC);
-  switch(parseInt(allC)){
+    
+  switch(allC){
     case 0:
-    imagenn = 'back_odo.jpg'; 
+    image = 'back_odo.jpg'; 
     break;
     case 4:
-    imagenn = 'sellante.jpg'; 
+    image = 'sellante.jpg'; 
     break;
     case 5:
-    imagenn = 'sellante_in.jpg'; 
+    image = 'sellante_in.jpg'; 
     break;
     case 6:
-    imagenn = 'extra_in.jpg';
+    image = 'extra_in.jpg';
     break;
     case 7:
-    imagenn = 'con_endo.jpg';
+    image = 'con_endo.jpg';
     break;
     case 8:
-    imagenn =  'protesis.jpg';
+    image =  'protesis.jpg';
     break;
     case 9:
-    imagenn =  'necro_pul.jpg';
+    image =  'necro_pul.jpg';
     break;
     case 10:
-    imagenn =  'protesi_in.jpg';
+    image =  'protesi_in.jpg';
     break;
     case 11:
-    imagenn =  'clini_au.jpg';
+    image =  'clini_au.jpg';
     break;
   }
-  return imagenn;
+  return image;
 }
 
 function getColorOdo(cColor)
 {
-
-  var color = '16px  solid rgba(255,130,255,0.1)';
-  switch(parseInt(cColor)){
+  switch(cColor){
     case 0:
-    var color = '16px  solid rgba(255,130,255,0.1)';
+    color = '16px  solid rgba(255,130,255,0.1)';
     break;
     case 1:
-    var color = '16px  solid #d24d33';
+    color = '16px  solid #d24d33';
     break;
     case 2: 
-    var color = '16px  solid  #3b8dbd';
+    color = '16px  solid  #3b8dbd';
     break;
     case 3:
-    var color = '16px  solid #333333';
+    color = '16px  solid #333333';
     break;
   }
   return color;
@@ -634,19 +631,18 @@ function getColorOdo(cColor)
 
 function getColorC(cColor)
 {
-console.log('color'+cColor);
-  switch(parseInt(cColor)){
+  switch(cColor){
     case 0:
-    var color = '#FFFFFF';
+    color = '#FFFFFF';
     break;
     case 1:
-    var color = '#d24d33';
+    color = '#d24d33';
     break;
     case 2: 
-    var color = '#3b8dbd';
+    color = '#3b8dbd';
     break;
     case 3:
-    var color = '#333333';
+    color = '#333333';
     break;
   }
   return color;
@@ -673,8 +669,9 @@ function addDiv(datarray,loop)
     odonto_back.attr('data-href',urlteeth+'/'+datarray[i].id);
     odonto_outer.attr('id','circle_odonto_outer_'+datarray[i].id);
     odonto_inner.attr('id','circle_odonto_inner_'+datarray[i].id);
-    if (datarray[i].all_c == 0) {
-       console.log('c2'+datarray[i].c2);
+
+    if (datarray[i].all_c === 0) {
+        console.log('c2'+datarray[i].c2);
        odonto_back.css({'cursor': 'pointer','background-image': 'url(../public/assets/images/back_odo.jpg)','width':'32px','height': '32px', '-moz-border-radius': '32px','-webkit-border-radius': '32px','border-radius': '32px','background-size':'contain','display':'inline-block'});
        odonto_outer.css({'width':'0','height':'0','border-right': getColorOdo(datarray[i].c2),'border-top': getColorOdo(datarray[i].c1),'border-left': getColorOdo(datarray[i].c4),'border-bottom': getColorOdo(datarray[i].c3),'-moz-border-radius': '50%','-webkit-border-radius': '50%','border-radius': '50%'});
        odonto_inner.css({'width': '16px','height': '16px','background': getColorC(datarray[i].c5),'-moz-border-radius': '50%','-webkit-border-radius': '50%', 'border-radius': '50%', 'top': '50%','left': '50%','margin': '-08px 0px 0px -08px', 'border': '1px solid #000'});
