@@ -23,4 +23,15 @@ class ConceptoGasto extends Model
 	  'user_id'	  
     ];
 
+    public function user(){
+
+        return $this->belongsTo('App\User','user_id')
+    }
+
+
+    public function gasto(){
+
+        return $this->hasMany('App\Gasto','concepto_gastos_id')
+    }
+
 }

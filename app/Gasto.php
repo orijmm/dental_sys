@@ -20,11 +20,20 @@ class Gasto extends Model
      */
     protected $fillable = [
 	  'detalle',
-	  'concepto_id',
+	  'conceptoGasto_id',
 	  'status',
 	  'user_id'
     ];
 
+    public function concepto()
+    {
+        return $this->belongTo('App\Concepto', 'concepto_gastos_id');
+    }
+
+    public function user()
+    {
+        return $this->belongTo('App\User', 'user_id');
+    }
     
 
 }

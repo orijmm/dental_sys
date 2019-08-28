@@ -211,4 +211,14 @@ class User extends Authenticatable
         return $this->hasOne(UserSocialNetworks::class, 'user_id');
     }
 
+    public function conceptosGastos()
+    {
+        return $this->hasMany('App\ConceptoGasto', 'user_id');
+    }
+
+    public function Gastos()
+    {
+        return $this->hasMany('App\Gasto', 'user_id');
+    }
+
 }
