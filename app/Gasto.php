@@ -20,7 +20,7 @@ class Gasto extends Model
      */
     protected $fillable = [
 	  'detalle',
-	  'conceptoGasto_id',
+	  'concepto_gastos_id',
 	  'status',
 	  'user_id'
     ];

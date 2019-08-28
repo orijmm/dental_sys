@@ -11,6 +11,6 @@ class ConceptoGastoSeeder extends Seeder
      */
     public function run()
     {
-    	factory(App\ConceptoGasto::class, 20)->create();
+        factory(App\ConceptoGasto::class, 10)->create();
     }
 }
