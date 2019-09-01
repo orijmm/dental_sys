@@ -702,4 +702,23 @@ return [
     'registered' => 'Registrado',
     'noregistered' => 'No Registrado',
 
+     // ConceptosGasto
+    'concepts' => 'Conceptos',
+    'create_new_role' => 'Crear Nuevo Rol',
+    'edit_role_details' => 'editar detalles del rol',
+    'role_details' => 'detalles del rol',
+    'role_details_big' => 'Detalles del Rol',
+    'role_name' => 'Nombre del Rol',
+    'display_name' => 'Mostrar Nombre',
+    'update_role' => 'Actualizar Rol',
+    'create_concept' => 'Crear Concepto',
+    'available_concepts' => 'Conceptos de Gastos Disponibles',
+    'add_concept' => 'Agregar Concepto',
+    'users_with_this_role' => '# de usuarios con este rol',
+    'edit_concepto' => 'Editar Concepto',
+    'delete_role' => 'Eliminar Rol',
+    'are_you_sure_delete_concept' => 'Seguro que desea eliminar este Concepto?',
+    'role_updated' => 'Rol actualizado',
+
+
 ];

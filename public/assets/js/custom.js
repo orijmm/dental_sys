@@ -315,6 +315,7 @@ $(document).on('click', '.btn-submit', function (e) {
     var form = $('#form-modal'); 
     var type = $('#form-modal input[name="_method"]').val();
     var odonto = $(this).data('odonto');
+
     if(typeof type == "undefined") {
         type = form.attr('method');
     }
@@ -325,6 +326,7 @@ $(document).on('click', '.btn-submit', function (e) {
         dataType: 'json',
         success: function(response) {
             hideLoading();
+
             if(response.success){
                 if(current_model == 'modal') {
                     $('#general-modal').modal('hide');
@@ -361,6 +363,7 @@ $(document).on('click', '.btn-submit', function (e) {
            
         },
         error: function (status) {
+            
             hideLoading();
             notify('error', status.statusText);
         }

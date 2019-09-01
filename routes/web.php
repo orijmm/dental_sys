@@ -137,4 +137,4 @@
     Route::get('ventas/reportes/vista','SaleController@showReporte')
     ->name('sales.reporte.show');
 
-    
+    Route::resource('conceptoGasto','conceptoGastoController',  ['except' => ['show']]);

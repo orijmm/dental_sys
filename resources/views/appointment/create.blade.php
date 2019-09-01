@@ -40,7 +40,7 @@
         <div  class="form-group">
           <label class="col-md-2 control-label" for="elije">Condición </label>
           <div class="col-sm-10">
-          {!!Form::select('elije', ['Emergencia' => 'Emergencia', 'Control' => 'Control', 'Primera Cita' => 'Primera Cita'],old('elije'), ['placeholder' => 'Seleccione','class' => 'form-control'])!!}
+          {!!Form::select('elije', ['Emergencia' => 'Emergencia', 'Control' => 'Control', 'Primera Cita' => 'Primera Cita'],null, ['placeholder' => 'Seleccione','class' => 'form-control'])!!}
            </div>
         </div>
         <div  class="form-group">

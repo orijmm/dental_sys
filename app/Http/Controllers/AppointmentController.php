@@ -33,7 +33,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('id','asc')->paginate(10);
+        
+        $appointments = $this->appointment::orderBy('id','asc')->paginate(10);
         return view('appointment.index',compact('appointments'));
     }
 
