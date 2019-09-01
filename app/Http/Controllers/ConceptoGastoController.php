@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Validator;
 use App\ConceptoGasto;
 use App\User;
 use App\Support\Logger\LoggerTrait;
@@ -82,27 +83,48 @@ class ConceptoGastoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateConceptoGastoRequest $request)
+    public function store(Request $request)
     {
-        $conceptoGasto = conceptoGasto::create($request->all());
+        
+        $validator = Validator::make($request->all(), [
+            'detalle' => 'required|unique:concepto_gastos,detalle',
+            
+        ]);
 
-        if ( $conceptoGasto ) {
-            $this->logAction('conceptoGasto', trans('log.new_role', ['name' => $conceptoGasto->detalle ]), $conceptoGasto);
-            return response()->json([
-                'success' => true,
-                'message' => trans('app.role_created')
-            ]);
-        } else {
+        if( $validator->passes() )
+        {
+            $conceptoGasto = conceptoGasto::create($request->all());
 
-            return response()->json([
-                'success' => false,
-                'message' => trans('app.error_again')
-            ]);
-           
-        }
+            if ( $conceptoGasto ) {
+                $this->logAction('conceptoGasto', trans('log.new_role', ['name' => $conceptoGasto->detalle ]), $conceptoGasto);
+                return response()->json([
+                    'success' => true,
+                    'message' => trans('app.role_created')
+                ]);
+            } else {
 
-        return back()->withErrors($messages);
+                return response()->json([
+                    'success' => false,
+                    'message' => trans('app.error_again')
+                ]);
+               
+            }
 
+        }else
+        {
+            $messages = $validator->errors()->getMessages();
+
+                if ( $request->ajax() ) {
+
+                    return response()->json([
+                        'success' => false,
+                        'validator' => true,
+                        'message' => $messages
+                    ]);
+                } 
+
+                return back()->withErrors($messages);        
+        }        
     }
 
     /**
@@ -134,30 +156,54 @@ class ConceptoGastoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateConceptoGastoRequest $request, $id)
+    public function update(Request $request, $id)
     {        
-        $conceptoGasto = conceptoGasto::where('id', $id)->first();
-
-        if ( $conceptoGasto ) {
+        
+        $validator = Validator::make($request->all(), [
+            'detalle' => 'required|unique:concepto_gastos,detalle,' . $id,
             
-            $conceptoGasto->detalle=$request->get('detalle');
+        ]);
 
-            if($conceptoGasto->update())
-            {        
-                $this->logAction('role', trans('log.updated_role', ['name' => $conceptoGasto->detalle ]), $conceptoGasto);
-                return response()->json([
-                    'success' => true,
-                    'message' => trans('app.role_updated')
-                ]);
-            
-            } else {
+        if( $validator->passes() )
+        {
+            $conceptoGasto = conceptoGasto::where('id', $id)->first();
 
-                return response()->json([
-                    'success' => false,
-                    'message' => trans('app.error_again')
-                ]);
+            if ( $conceptoGasto ) {
+                
+                $conceptoGasto->detalle=$request->get('detalle');
+
+                if($conceptoGasto->update())
+                {        
+                    $this->logAction('role', trans('log.updated_role', ['name' => $conceptoGasto->detalle ]), $conceptoGasto);
+                    return response()->json([
+                        'success' => true,
+                        'message' => trans('app.role_updated')
+                    ]);
+                
+                } else {
+
+                    return response()->json([
+                        'success' => false,
+                        'message' => trans('app.error_again')
+                    ]);
+                }
             }
-        }
+        } else {
+            $messages = $validator->errors()->getMessages();
+
+                if ( $request->ajax() ) {
+
+                    return response()->json([
+                        'success' => false,
+                        'validator' => true,
+                        'message' => $messages
+                    ]);
+                } 
+
+                return back()->withErrors($messages);        
+        }        
+
+
     } 
 
     /**

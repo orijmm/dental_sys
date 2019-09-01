@@ -106,6 +106,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validator = $this->validator($request->all());
+        
         if ( $validator->passes() ) {
             $role = $this->roles->create($request->all());
             if ( $role ) {

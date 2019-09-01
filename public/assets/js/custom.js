@@ -324,7 +324,7 @@ $(document).on('click', '.btn-submit', function (e) {
         type: type,
         data: form.serialize(),
         dataType: 'json',
-        success: function(response) {
+        success: function(response) { 
             hideLoading();
 
             if(response.success){
@@ -350,13 +350,14 @@ $(document).on('click', '.btn-submit', function (e) {
                     getPages(CURRENT_URL);
                 }
             } else {
-                if(response.validator) {
+                if(response.validator) { 
                   var message = '';
                   $.each(response.message, function(key, value) {
                     message += value+' ';
                   });
                   notify('error', message);
                 } else {
+
                   notify('error', response.message);
                 }
             }
