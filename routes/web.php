@@ -11,9 +11,7 @@
 |
 */
 
-    Route::get('/', function () {
-        return redirect()->route('login');
-    });
+    Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('login', 'Auth\LoginController@getLogin')->name('login');
     Route::get('logout', 'Auth\LoginController@getLogout')->name('auth.logout');
